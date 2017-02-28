@@ -31,7 +31,7 @@ global.ErrorUtils = {
   setGlobalHandler: () => {}
 };
 
-var FormTest = require('./formTest').default;
+var FormTest = require('./formTest');
 
 describe('ValidationComponent:', () => {
 

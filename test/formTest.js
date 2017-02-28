@@ -1,8 +1,8 @@
 'use strict';
 
-import React from 'react';
+import React, {Component}  from 'react';
 import {View, Text, TextInput, TouchableHighlight} from 'react-native';
-let ValidationComponent = require('../index').default;
+const ValidationComponent = require('../index').default;
 
 export default class FormTest extends ValidationComponent {
 

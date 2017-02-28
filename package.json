@@ -4,7 +4,9 @@
   "description": "React native library to validate form fields",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "mocha": "./node_modules/mocha/bin/_mocha ./test/*.test.js --watch",
+    "test": "node ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha ./test/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -25,15 +27,18 @@
     "moment": "2.x.x"
   },
   "devDependencies": {
-    "react": "^0.14.3",
-    "react-native": "^0.14.3",
-
+    "react": "~15.4.0",
+    "react-native": "~0.39.0",
+    "cz-conventional-changelog": "^1.1.6",
+  
     "babel-core": "^6.5.2",
     "babel-preset-react-native": "^1.8.0",
-    "mocha": "^2.5.2",
     "chai": "^3.5.0",
+    "coveralls": "^2.11.9",
     "enzyme": "^2.4.0",
+    "istanbul": "^1.0.0-alpha.2",
     "jsdom": "^9.4.1",
+    "mocha": "^2.5.2",
     "react-addons-test-utils": "~15.4.0",
     "react-dom": "~15.4.0",
     "react-native-mock": "^0.2.8",

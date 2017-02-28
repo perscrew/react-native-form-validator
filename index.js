@@ -4,11 +4,13 @@ import React, { Component } from 'react';
 import defaultRules from './defaultRules';
 import defaultMessages from './defaultMessages';
 
-class ValidationComponent extends Component {
+export default class ValidationComponent extends Component {
 
   constructor(props) {
       super(props);
       // array to store error on each fields
+      // ex:
+      // [{ fieldName: "name", messages: ["The field name is required."] }]
       this.errors = [];
   }
 
@@ -50,26 +52,32 @@ class ValidationComponent extends Component {
   // Method to check rules on a spefific field
   _checkRules(fieldName, rules, value) {
     for (const key of Object.keys(rules)) {
-      const isRuleFn = (typeof defaultRules[key] == "function"),
-        isRegExp = (defaultRules[key] instanceof RegExp);
-      if (rules[key] && (isRuleFn && defaultRules[key](rules[key], value))
-          || (isRegExp && defaultRules[key].test(value)) {
+      const isRuleFn = (typeof defaultRules[key] == "function");
+      const isRegExp = (defaultRules[key] instanceof RegExp);
+      if (rules[key] && (isRuleFn && defaultRules[key](rules[key], value)) || (isRegExp && defaultRules[key].test(value))) {
         this._addError(fieldName, rules[key], value, isRuleFn);
       }
     }
   }
 
   // Add error
+  // ex:
+  // [{ fieldName: "name", messages: ["The field name is required."] }]
   _addError(fieldName, rule, value, isFn) {
-    const errorMessage = {
-      rule,
-      message: defaultMessages[rule].replace("{0}", fieldName).replace("{1}", value)
-    };
+    const errMsg = defaultMessages[rule].replace("{0}", fieldName).replace("{1}", value);
+    let [error] = this.errors.filter(err => err.fieldName === fieldName);
     // error already exists
-    if (this.errors[fieldName]) {
-      this.errors[fieldName].messages.push(errorMessage);
+    if (error) {
+      // Update existing element
+      const index = this.errors.indexOf(error);
+      error.messages.push(errMsg);
+      this.errors[index] = error;
     } else {
-      this.errors[fieldName] = {messages: [errorMessage]};
+      // Add new item
+      this.errors.push({
+        fieldName,
+        messages: [errorMsg]
+      });
     }
   }
 
@@ -79,20 +87,16 @@ class ValidationComponent extends Component {
   }
 
   // Method to check if the field is in error
-  isFieldInError(name) {
-    return this.errors[name];
+  isFieldInError(fieldName) {
+    return (this.errors.filter(err => err.fieldName === fieldName).length > 0);
   }
 
   isFormValid() {
-    for (const key of Object.keys(this.errors)) {
-      if (this.errors[key])
-        return false;
-    }
-    return true;
+    return this.errors.length == 0;
   }
 
   // Concatenate each error messages
   getErrorMessages() {
-    return this.errors.map((error) => error ? error.messages.map(msg => msg + "\n") : "");
+    return this.errors.map((err) => err.messages.map(msg => msg + "\n"));
   }
 }
