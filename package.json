@@ -1,0 +1,42 @@
+{
+  "name": "react-native-form-validator",
+  "version": "1.0.0",
+  "description": "React native library to validate form fields",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/perscrew/react-native-form-validator.git"
+  },
+  "keywords": [
+    "react-native",
+    "react",
+    "javascript"
+  ],
+  "author": "TibTib",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/perscrew/react-native-form-validator/issues"
+  },
+  "homepage": "https://github.com/perscrew/react-native-form-validator#readme",
+  "dependencies": {
+    "moment": "2.x.x"
+  },
+  "devDependencies": {
+    "react": "^0.14.3",
+    "react-native": "^0.14.3",
+
+    "babel-core": "^6.5.2",
+    "babel-preset-react-native": "^1.8.0",
+    "mocha": "^2.5.2",
+    "chai": "^3.5.0",
+    "enzyme": "^2.4.0",
+    "jsdom": "^9.4.1",
+    "react-addons-test-utils": "~15.4.0",
+    "react-dom": "~15.4.0",
+    "react-native-mock": "^0.2.8",
+    "sinon": "^1.17.4"
+  }
+}
