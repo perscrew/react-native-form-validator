@@ -1,14 +1,12 @@
 'use strict';
 
 import React, {Component} from 'react';
-import {
-  Text,
-  View
-} from 'react-native';
+import { Text, View } from 'react-native';
 import {shallow, mount} from 'enzyme';
 import Moment from 'moment';
 import {expect} from 'chai';
 import sinon from 'sinon';
+import FormTest from './formTest';
 
 /*---------------- mock DOM ----------------*/
 import {jsdom} from 'jsdom';
@@ -31,7 +29,7 @@ global.ErrorUtils = {
   setGlobalHandler: () => {}
 };
 
-var FormTest = require('./formTest');
+
 
 describe('ValidationComponent:', () => {
 
@@ -39,7 +37,7 @@ describe('ValidationComponent:', () => {
     const wrapper = mount(<FormTest />);
     const formTest = wrapper.instance();
 
-    expect(wrapper.state('errors')).to.equal([]);
+    expect(formTest.errors).to.deep.equal([]);
   });
 
   it('default fields validation should be ok', () => {
@@ -48,17 +46,20 @@ describe('ValidationComponent:', () => {
 
     formTest._onPressButton();
 
-    expect(wrapper.state('errors')).to.equal([]);
+    expect(formTest.errors).to.deep.equal([]);
     expect(formTest.isFormValid()).to.equal(true);
     expect(formTest.getErrorMessages()).to.equal("");
   });
 
   it('fields validation name should not be ok', () => {
-    const wrapper = mount(<FormTest />);
-    const formTest = wrapper.instance();
-    wrapper.setState({name:"tt"});
+    const wrapper = shallow(<FormTest />);
+    const textInput = wrapper.find('TextInput').first();
+    textInput.simulate('changeText', "tt");
 
+    const formTest = wrapper.instance();
     formTest._onPressButton();
+
+    console.log("error messages : " + formTest.getErrorMessages());
 
     expect(formTest.isFormValid()).to.equal(false);
     expect(formTest.getErrorMessages()).to.not.equal("");
@@ -67,7 +68,7 @@ describe('ValidationComponent:', () => {
   it('fields validation email should not be ok', () => {
     const wrapper = mount(<FormTest />);
     const formTest = wrapper.instance();
-    wrapper.setState({email:"tt"});
+    formTest.setState({email:"tt"});
 
     formTest._onPressButton();
 
@@ -78,7 +79,7 @@ describe('ValidationComponent:', () => {
   it('fields validation date should not be ok', () => {
     const wrapper = mount(<FormTest />);
     const formTest = wrapper.instance();
-    wrapper.setState({date:"11/10/17"});
+    formTest.setState({date:"11/10/17"});
 
     formTest._onPressButton();
 

@@ -2,7 +2,7 @@
 
 import React, {Component}  from 'react';
 import {View, Text, TextInput, TouchableHighlight} from 'react-native';
-const ValidationComponent = require('../index').default;
+import ValidationComponent from '../index';
 
 export default class FormTest extends ValidationComponent {
 
@@ -15,7 +15,7 @@ export default class FormTest extends ValidationComponent {
     // Call ValidationComponent validate method
     this.validate({
       name: {maxLength: 3, required: true},
-      email: {email:true},
+      email: {email: true},
       date: {date: 'YYYY-MM-DD'}
     });
   }

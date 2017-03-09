@@ -1,12 +1,12 @@
 {
   "name": "react-native-form-validator",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "React native library to validate form fields",
   "main": "index.js",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "mocha": "./node_modules/mocha/bin/_mocha ./test/*.test.js --watch",
-    "test": "node ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha ./test/*.test.js"
+    "mocha": "mocha --recursive --compilers js:babel-register --require babel-polyfill test/*.test.js",
+    "test": "node node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha test/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -24,13 +24,14 @@
   },
   "homepage": "https://github.com/perscrew/react-native-form-validator#readme",
   "dependencies": {
-    "moment": "2.x.x"
+    "moment": "2.x.x",
+    "react-native-i18n": "^1.0.0"
   },
   "devDependencies": {
     "react": "~15.4.0",
-    "react-native": "~0.39.0",
+    "react-native": "^0.42.0",
     "cz-conventional-changelog": "^1.1.6",
-  
+
     "babel-core": "^6.5.2",
     "babel-preset-react-native": "^1.8.0",
     "chai": "^3.5.0",
