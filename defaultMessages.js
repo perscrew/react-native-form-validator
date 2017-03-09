@@ -5,7 +5,7 @@ const defaultMessages = {
     en: {
       numbers: 'The field {0} must be a valid number.',
       email: 'The field {0} must be a valid email address.',
-      required: 'The field ${0} is mandatory.',
+      required: 'The field {0} is mandatory.',
       date: 'The field {0} must be a valid date ({1}).',
       minlength: 'The field length {0} must be more than {1}',
       maxlength: 'The field length {0} must be less than {1}'

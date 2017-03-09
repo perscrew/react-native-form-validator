@@ -16,9 +16,9 @@ const defaultRules = {
     if (length === void(0)) {
       throw 'ERROR: It is not a valid length, checkout your minlength settings.';
     } else if(value.length < length) {
-      return false;
+      return true;
     }
-    return true;
+    return false;
   },
   maxlength(length, value) {
     if (length === void(0)) {
@@ -26,7 +26,7 @@ const defaultRules = {
     } else if (value.length > length) {
       return false;
     }
-    return true
+    return true;
   }
 };
 

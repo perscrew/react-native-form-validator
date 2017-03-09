@@ -24,8 +24,8 @@ export default class FormTest extends ValidationComponent {
       return (
         <View>
           <TextInput ref="name" onChangeText={(name) => this.setState({name})} value={this.state.name} />
-          <TextInput ref="email" onChangeText={(name) => this.setState({email})} value={this.state.email} />
-          <TextInput ref="date" onChangeText={(name) => this.setState({date})} value={this.state.date} />
+          <TextInput ref="email" onChangeText={(email) => this.setState({email})} value={this.state.email} />
+          <TextInput ref="date" onChangeText={(date) => this.setState({date})} value={this.state.date} />
 
           <TouchableHighlight onPress={this._onPressButton}>
             <Text>Submit</Text>

@@ -29,37 +29,19 @@ export default class ValidationComponent extends Component {
   *}
   */
   validate(fields) {
-    console.log("call validate");
     // Reset errors
     this._resetErrors();
-
+    console.log(JSON.stringify(this.state));
     // Iterate over inner state
     for (const key of Object.keys(this.state)) {
-      console.log("key loop : " + key);
       // Check if child name is equals to fields array set up in parameters
       const rules = fields[key];
-
-
+      if (rules) {
         // Check rule for current field
-        console.log("check rules for : " + key);
         this._checkRules(key, rules, this.state[key]);
-
+      }
     };
     return this.isFormValid();
-  }
-
-  // Get a field mapping according react form name
-  _getFieldByName(fields, fieldName) {
-    for (const key of Object.keys(fields)) {
-      console.log("key field by name :"+key);
-      if (fields[key] == fieldName) {
-        return {
-          name:key,
-          rules: fields[key]
-        };
-      }
-    }
-    return null;
   }
 
   // Method to check rules on a spefific field
@@ -67,7 +49,8 @@ export default class ValidationComponent extends Component {
     for (const key of Object.keys(rules)) {
       const isRuleFn = (typeof defaultRules[key] == "function");
       const isRegExp = (defaultRules[key] instanceof RegExp);
-      if (rules[key] && (isRuleFn && defaultRules[key](rules[key], value)) || (isRegExp && defaultRules[key].test(value))) {
+      if ((isRuleFn && !defaultRules[key](rules[key], value)) || (isRegExp && !defaultRules[key].test(value))) {
+        console.log("error add, rule :" + key + " value : " + value);
         this._addError(fieldName, key, value, isRuleFn);
       }
     }
@@ -77,7 +60,6 @@ export default class ValidationComponent extends Component {
   // ex:
   // [{ fieldName: "name", messages: ["The field name is required."] }]
   _addError(fieldName, rule, value, isFn) {
-    console.log("locale " + this.deviceLocale + " rule " + rule);
     const errMsg = defaultMessages[this.deviceLocale][rule].replace("{0}", fieldName).replace("{1}", value);
     let [error] = this.errors.filter(err => err.fieldName === fieldName);
     // error already exists
@@ -98,11 +80,6 @@ export default class ValidationComponent extends Component {
   // Reset error fields
   _resetErrors() {
     this.errors = [];
-  }
-
-  // Used to retrieve the key in the defaultMessages.js file
-  _getLocaleKeyForRule() {
-    return this.deviceLocale.split("-")[0]; // return en for en-US
   }
 
   // Method to check if the field is in error
