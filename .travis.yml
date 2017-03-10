@@ -15,3 +15,10 @@ install:
 
 script:
   - npm run test
+
+deploy:
+  provider:npm
+  email: thibaud.dervily@gmail.com
+  secure: "Z8li3VznaJsEY1G3Uoo1NAQPntT1tXx3/UsZJnG74O3l9I5uUr3Y9Kcm18ImoX5azURpp+Ur+bxUV0w+SDGxXop9gFvbpiIKjvij4jdtSvxgXR6XNpldoYPoz9m23FZmDj5qFANY1yyfvMTMf0YR0NoOG4FbvbvN7C+JCCwtb+5YWEKihDD2PfqSdod/5TQ6MlvpGyAz9K4tIa+6T4pzfL280EV9YEeinBHkdPb8ZYze25Mxrfoiqe7V+xmUK5P3v5Necuay/3pjxXsW/DsZ7V7/L80eB6cKDW0FkBufXcjf8RHk4RXdENj4OcQt7qapfK4qJlnljMap6zyc5vsUb9PKy5vQikxsbv2ZrpJtu1q0o3v2yDtTrhnF65sUF1xYYs3zrg+pOEHsQjBknnjOkFzPFjgCACaNayAAP6OY6QJJCN8HLrem5tzVYfeqy3NhfBLv7B8ZjDSvpJoPdr+4DrTsAMhux+yEN6j/v4bMd8xmgN4PbkF89zA0YcBW38QRutZIgcHpMxoPyK7sT2aarzeVZkEMnaEt5DfkRYSEzI0HFzVFKlJu8i+CNRix1XVyxeNIM0qqJFyYTwSlDcX+2TVV0kmM6MYqle1T99HxO5sHmnQpvFKYq6tMxviKleCwG9afD8Dh6tzLxktXXppDzUXrXr6TVc7rtARolDdsy/8="
+  on:
+    tags: true
