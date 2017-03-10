@@ -1,6 +1,6 @@
 'use strict';
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 
 import defaultRules from './defaultRules';
@@ -14,7 +14,10 @@ export default class ValidationComponent extends Component {
       // ex:
       // [{ fieldName: "name", messages: ["The field name is required."] }]
       this.errors = [];
+      // Retrieve props
       this.deviceLocale = props.deviceLocale || 'en'; // ex: en, fr
+      this.rules = props.rules || defaultRules; // rules for Validation
+      this.messages = props.messages || defaultMessages;
   }
 
   /*
@@ -31,7 +34,6 @@ export default class ValidationComponent extends Component {
   validate(fields) {
     // Reset errors
     this._resetErrors();
-    console.log(JSON.stringify(this.state));
     // Iterate over inner state
     for (const key of Object.keys(this.state)) {
       // Check if child name is equals to fields array set up in parameters
@@ -47,11 +49,10 @@ export default class ValidationComponent extends Component {
   // Method to check rules on a spefific field
   _checkRules(fieldName, rules, value) {
     for (const key of Object.keys(rules)) {
-      const isRuleFn = (typeof defaultRules[key] == "function");
-      const isRegExp = (defaultRules[key] instanceof RegExp);
-      if ((isRuleFn && !defaultRules[key](rules[key], value)) || (isRegExp && !defaultRules[key].test(value))) {
-        console.log("error add, rule :" + key + " value : " + value);
-        this._addError(fieldName, key, value, isRuleFn);
+      const isRuleFn = (typeof this.rules[key] == "function");
+      const isRegExp = (this.rules[key] instanceof RegExp);
+      if ((isRuleFn && !this.rules[key](rules[key], value)) || (isRegExp && !this.rules[key].test(value))) {
+        this._addError(fieldName, key, rules[key], isRuleFn);
       }
     }
   }
@@ -60,7 +61,7 @@ export default class ValidationComponent extends Component {
   // ex:
   // [{ fieldName: "name", messages: ["The field name is required."] }]
   _addError(fieldName, rule, value, isFn) {
-    const errMsg = defaultMessages[this.deviceLocale][rule].replace("{0}", fieldName).replace("{1}", value);
+    const errMsg = this.messages[this.deviceLocale][rule].replace("{0}", fieldName).replace("{1}", value);
     let [error] = this.errors.filter(err => err.fieldName === fieldName);
     // error already exists
     if (error) {
@@ -92,7 +93,14 @@ export default class ValidationComponent extends Component {
   }
 
   // Concatenate each error messages
-  getErrorMessages() {
-    return this.errors.map((err) => err.messages.map(msg => msg + "\n")).join();
+  getErrorMessages(separator="\n") {
+    return this.errors.map((err) => err.messages.join(separator)).join(separator);
   }
+}
+
+// PropTypes for component
+ValidationComponent.propTypes = {
+  deviceLocale: PropTypes.string, // Used for language locale
+  rules: PropTypes.object, // rules for validations
+  messages : PropTypes.object // messages for validation errors
 }

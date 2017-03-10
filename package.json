@@ -17,15 +17,14 @@
     "react",
     "javascript"
   ],
-  "author": "TibTib",
+  "author": "Thibaud Dervily",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/perscrew/react-native-form-validator/issues"
   },
   "homepage": "https://github.com/perscrew/react-native-form-validator#readme",
   "dependencies": {
-    "moment": "2.x.x",
-    "react-native-i18n": "^1.0.0"
+    "moment": "2.x.x"
   },
   "devDependencies": {
     "react": "~15.4.0",
@@ -36,7 +35,7 @@
     "babel-preset-react-native": "^1.8.0",
     "chai": "^3.5.0",
     "coveralls": "^2.11.9",
-    "enzyme": "^2.4.0",
+    "enzyme": "^2.4.2",
     "istanbul": "^1.0.0-alpha.2",
     "jsdom": "^9.4.1",
     "mocha": "^2.5.2",
