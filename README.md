@@ -91,7 +91,7 @@ You can also specify the default custom language locale in the props :
 
 ## 3. Complete example
 
-You can find a complete example in the [formTest.js][./test/formTest.js] file :
+You can find a complete example in the [formTest.js](./test/formTest.js) file :
 
 ```
 'use strict';
