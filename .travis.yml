@@ -1,24 +1,20 @@
 language: node_js
-
 node_js:
-  - "6"
-
+- '6'
 notifications:
   email: false
-
 cache:
   directories:
-    - node_modules
-
+  - node_modules
 install:
-  - npm install
-
+- npm install
 script:
-  - npm run test
-
+- npm run test
 deploy:
-  provider:npm
+  provider: npm
   email: thibaud.dervily@gmail.com
-  secure: "Z8li3VznaJsEY1G3Uoo1NAQPntT1tXx3/UsZJnG74O3l9I5uUr3Y9Kcm18ImoX5azURpp+Ur+bxUV0w+SDGxXop9gFvbpiIKjvij4jdtSvxgXR6XNpldoYPoz9m23FZmDj5qFANY1yyfvMTMf0YR0NoOG4FbvbvN7C+JCCwtb+5YWEKihDD2PfqSdod/5TQ6MlvpGyAz9K4tIa+6T4pzfL280EV9YEeinBHkdPb8ZYze25Mxrfoiqe7V+xmUK5P3v5Necuay/3pjxXsW/DsZ7V7/L80eB6cKDW0FkBufXcjf8RHk4RXdENj4OcQt7qapfK4qJlnljMap6zyc5vsUb9PKy5vQikxsbv2ZrpJtu1q0o3v2yDtTrhnF65sUF1xYYs3zrg+pOEHsQjBknnjOkFzPFjgCACaNayAAP6OY6QJJCN8HLrem5tzVYfeqy3NhfBLv7B8ZjDSvpJoPdr+4DrTsAMhux+yEN6j/v4bMd8xmgN4PbkF89zA0YcBW38QRutZIgcHpMxoPyK7sT2aarzeVZkEMnaEt5DfkRYSEzI0HFzVFKlJu8i+CNRix1XVyxeNIM0qqJFyYTwSlDcX+2TVV0kmM6MYqle1T99HxO5sHmnQpvFKYq6tMxviKleCwG9afD8Dh6tzLxktXXppDzUXrXr6TVc7rtARolDdsy/8="
+  api_key:
+    secure: guxVjsQ82UBs9XFCBbWvu6UVkWcjk3d4Ea4OMT+a4L+WHJJ//C740nK4zQnmhboG/4EA2YEauCgoK37Z1cLqONJk8M6vA3swM0eIs9UQCdWlh25xN6OK6NNvVj5cyrXjqGBFUxUuHotu52ItXlAauJzQGGKuT0ITYdHlL5LDq7kpz6cmMym4ISCczAlqtlv7PclT9Fx/aTNVvJEnGlLUb0puYij5Bjj8+1EcxUz8Cus+kMrbxQ8YkE/2Grqbcd3akgvmCuit0aUXz9pvZfUW19XbnDqVKfAH1Wu+VoMM/NxgI8q5Ke7jkNFgamAyfAAnqnoxVZm1h0XD4HkJE9f6M0Uopr4+t2IXXciZlFs0x+TUsyheakt1AoiHXFOyzYz0s35yRuwxShVThOQ0RrcjLxqxNAqwYG8GTRQIcdvM8pCeeAUQX45bdxVpDg+NDkWR8ecGl1IC6WyZqK7tJDIgeYGw9Mp2LUn+LI8r8Yipr3XlnrHMzG8P9+ns37se53Jf+W7Pl2/mwCt+YLyULWcr0aGGR0A9GS9z5NI1HiQFQfmLtwsOOUbiC6UIvOaTCLYjFEm3h6SSZVgxbFpdiG+ewZvg9/hISBRaEh/HTbU5uK1UgR1h+F57cf9LfieQG8TqYlhg+Rh+YtxI5SszCGdfTP2SbnhpYcG5YIFb2qlsjvc=
   on:
     tags: true
+    repo: perscrew/react-native-form-validator
