@@ -7,7 +7,7 @@ The library is voluntarily easy to use. You juste have to extends the "Validatio
 ## 1. Installation
 * Run npm install 'react-native-form-validator' to fetch the library :
 ```
-npm install 'react-native-form-validator'
+npm install 'react-native-form-validator' --save
 ```
 
 ## 2. Use it in your app
@@ -46,6 +46,7 @@ The second level matches with the existing validation rules.
 You will find bellow the default rules available in the library [defaultRules.js](./defaultRules.js) :
 
 |Rule|Benefits|
+|-------|--------|
 |numbers|Check if a state variable is a number.|
 |email|Check if a state variable is an email.|
 |required|Check if a state variable is not empty.|
@@ -53,16 +54,40 @@ You will find bellow the default rules available in the library [defaultRules.js
 |minlength|Check if a state variable is greater than minlength.|
 |maxlength|Check if a state variable is lower than maxlength.|
 
+You can also override this file via the component React props :
+```
+const rules = {any: /^(.*)$/};
+
+<FormTest rules={rules} />
+```
+
+
 Once you have extended the class a set of usefull methods become avaiblable :
 
 |Method|Output|Benefits|
 |-------|--------|--------|
-|this.validate(%state_rules%)|Boolean(true/false)|This method ensures form validation within the object passed in argument.
-The object should be a representation of the React component state. The first graph level matches with the React state variables.
-The second level matches with the existing validation rules.|
-|this.isFormValid()|Boolean(true/false)|This method indicates if the form is valid and if there is no errors.|
-|this.isFieldInError(%fieldName%)|Boolean(true/false)|This method indicates if a specific field is in error. The field name will matches with your React state|
-|this.getErrorMessages(%separator%)|String|This method retruns the different error messages bound to your React state. The argument is optional, by default the separator is a \n. Under the hood a join method is used.|
+|this.validate(state_rules)|Boolean|This method ensures form validation within the object passed in argument.The object should be a representation of the React component state. The first graph level matches with the React state variables.The second level matches with the existing validation rules.|
+|this.isFormValid()|Boolean|This method indicates if the form is valid and if there is no errors.|
+|this.isFieldInError(fieldName)|Boolean|This method indicates if a specific field is in error. The field name will matches with your React state|
+|this.getErrorMessages(separator)|String|This method retruns the different error messages bound to your React state. The argument is optional, by default the separator is a \n. Under the hood a join method is used.|
+
+The library also contains a [defaultMessages.js](./defaultMessages.js) file wich includes the errors label for a language locale.
+You can override this file via the component React props :
+```
+const messages = {
+  en: {numbers: "error on numbers !"},
+  fr: {numbers: "erreur sur numbers !"}
+};
+
+<FormTest messages={messages} />
+```
+
+You can also specify the default custom language locale in the props :
+
+```
+<FormTest deviceLocale="fr" />
+```
+
 
 ## 3. Complete example
 
