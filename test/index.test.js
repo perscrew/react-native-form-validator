@@ -51,6 +51,16 @@ describe('ValidationComponent:', () => {
     expect(formTest.getErrorMessages()).to.equal("");
   });
 
+  it('method validate should return false', () => {
+    const wrapper = shallow(<FormTest />);
+    const textInput = wrapper.find(TextInput).first(); // name input
+    //Seize a value lower than 2 chars
+    textInput.simulate('changeText', "na"); // minlength = 3
+
+    const formTest = wrapper.instance();
+    expect(formTest.validate({name: {minlength:3}})).to.equal(false);
+  });
+
   it('fields validation name should not be ok', () => {
     const wrapper = shallow(<FormTest />);
     const textInput = wrapper.find(TextInput).first(); // name input
