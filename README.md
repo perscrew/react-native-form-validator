@@ -1,4 +1,4 @@
-#React native form validator
+# React native form validator
 [![Build Status](https://travis-ci.org/perscrew/react-native-form-validator.svg?branch=master)](https://travis-ci.org/perscrew/react-native-form-validator)
 
 React native form validator is a simple library to validate your form fiels with React Native.
