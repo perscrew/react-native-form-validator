@@ -18,6 +18,15 @@ const defaultMessages = {
       date: 'Le champ "{0}" doit correspondre à une date valide ({1}).',
       minlength: 'Le nombre de caractère du champ "{0}" doit être supérieur à {1}.',
       maxlength: 'Le nombre de caractère du champ "{0}" doit être inférieur à {1}.'
+    },
+    // Persian (Farsi) language
+    fa: {
+      numbers: 'فیلد "{0}" باید یک عدد باشد.',
+      email: 'فیلد "{0}" باید یک آدرس ایمیل باشد.',
+      required: 'فیلد "{0}" نباید خالی باشد.',
+      date: 'فیلد "{0}" باید یک تاریخ ({1}) باشد.',
+      minlength: 'طول فیلد "{0}" باید بیشتر از "{1}" باشد.',
+      maxlength: 'طول فیلد "{0}" باید کمتر از "{1}" باشد.'
     }
     // TODO Add other languages here...
 };
