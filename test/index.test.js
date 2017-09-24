@@ -48,6 +48,8 @@ describe('ValidationComponent:', () => {
 
     expect(formTest.errors).to.deep.equal([]);
     expect(formTest.isFormValid()).to.equal(true);
+    expect(formTest.getErrorsInField('name')).to.deep.equal([]);
+    expect(formTest.getErrorsInField('number')).to.deep.equal([]);
     expect(formTest.getErrorMessages()).to.equal("");
   });
 
@@ -91,6 +93,10 @@ describe('ValidationComponent:', () => {
     expect(formTest.isFormValid()).to.equal(false);
     expect(formTest.getErrorMessages()).to.
       equal('The field "name" length must be greater than 3.\nThe field "name" is mandatory.');
+    expect(formTest.getErrorsInField('name')).to.deep.equal([
+      'The field "name" length must be greater than 3.',
+      'The field "name" is mandatory.'
+    ])
     expect(formTest.isFieldInError('name')).to.equal(true);
 
     // Seize a value greater than maxlength (7)
@@ -142,6 +148,21 @@ describe('ValidationComponent:', () => {
     expect(formTest.isFormValid()).to.equal(false);
     expect(formTest.getErrorMessages()).to.
       equal('The field "number" must be a valid number.');
+    expect(formTest.isFieldInError('number')).to.equal(true);
+  });
+
+  it('fields validation number should not be very OK', () => {
+    const wrapper = shallow(<FormTest />);
+    const textInput = wrapper.find(TextInput).at(2); // number input
+    textInput.simulate('changeText', "not_number");
+
+    const formTest = wrapper.instance();
+    formTest._onPressButton();
+
+    expect(formTest.isFormValid()).to.equal(false);
+    expect(formTest.getErrorMessages()).to.
+    equal('The field "number" must be a valid number.');
+    expect(formTest.getErrorsInField('number')).to.deep.equal(['The field "number" must be a valid number.'])
     expect(formTest.isFieldInError('number')).to.equal(true);
   });
 
