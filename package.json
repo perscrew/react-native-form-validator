@@ -1,6 +1,6 @@
 {
   "name": "react-native-form-validator",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "React native library to validate form fields",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/perscrew/react-native-form-validator#readme",
   "dependencies": {
-    "moment": "2.x.x",
+    "moment": "^2.11.2",
     "prop-types" : "15.6.0"
   },
   "devDependencies": {
