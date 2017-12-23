@@ -27,6 +27,15 @@ const defaultMessages = {
       date: 'فیلد "{0}" باید یک تاریخ ({1}) باشد.',
       minlength: 'طول فیلد "{0}" باید بیشتر از "{1}" باشد.',
       maxlength: 'طول فیلد "{0}" باید کمتر از "{1}" باشد.'
+    },
+    // Indonesian language
+    id: {
+      numbers: '"{0}" harus berupa angka',
+      email: 'Format email pada "{0}" harus valid',
+      required: '"{0}" harus diisi',
+      date: 'Format tanggal pada "{0}" harus ({1})',
+      minlength: '"{0}" harus lebih dari {1} karakter',
+      maxlength: '"{0}" harus kurang dari {1} karakter'
     }
     // TODO Add other languages here...
 };
