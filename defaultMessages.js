@@ -27,7 +27,16 @@ const defaultMessages = {
       date: 'فیلد "{0}" باید یک تاریخ ({1}) باشد.',
       minlength: 'طول فیلد "{0}" باید بیشتر از "{1}" باشد.',
       maxlength: 'طول فیلد "{0}" باید کمتر از "{1}" باشد.'
-    }
+    },
+    // Portuguese language of Brazil
+    ptBR: {
+      numbers: 'O campo "{0}" precisar conter um número válido',
+      email: 'O campo "{0}" precisa conter um email válido.',
+      required: 'O campo "{0}" é obrigatório.',
+      date: 'O campo "{0}" precisa conter uma data válida ({1}).',
+      minlength: 'O campo "{0}" precisa ser maior que {1} caracteres',
+      maxlength: 'O campo "{0}" precisa ser menor que {1} caracteres.'
+    },
     // TODO Add other languages here...
 };
 
