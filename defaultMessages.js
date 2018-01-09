@@ -36,7 +36,7 @@ const defaultMessages = {
       date: 'Format tanggal pada "{0}" harus ({1})',
       minlength: '"{0}" harus lebih dari {1} karakter',
       maxlength: '"{0}" harus kurang dari {1} karakter'
-    }
+    },
     // Portuguese language of Brazil
     ptBR: {
       numbers: 'O campo "{0}" precisar conter um número válido',
