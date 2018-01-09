@@ -28,6 +28,15 @@ const defaultMessages = {
       minlength: 'طول فیلد "{0}" باید بیشتر از "{1}" باشد.',
       maxlength: 'طول فیلد "{0}" باید کمتر از "{1}" باشد.'
     },
+    // Indonesian language
+    id: {
+      numbers: '"{0}" harus berupa angka',
+      email: 'Format email pada "{0}" harus valid',
+      required: '"{0}" harus diisi',
+      date: 'Format tanggal pada "{0}" harus ({1})',
+      minlength: '"{0}" harus lebih dari {1} karakter',
+      maxlength: '"{0}" harus kurang dari {1} karakter'
+    },
     // Portuguese language of Brazil
     ptBR: {
       numbers: 'O campo "{0}" precisar conter um número válido',
@@ -36,7 +45,7 @@ const defaultMessages = {
       date: 'O campo "{0}" precisa conter uma data válida ({1}).',
       minlength: 'O campo "{0}" precisa ser maior que {1} caracteres',
       maxlength: 'O campo "{0}" precisa ser menor que {1} caracteres.'
-    },
+    }
     // TODO Add other languages here...
 };
 
