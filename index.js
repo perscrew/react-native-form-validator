@@ -19,6 +19,7 @@ export default class ValidationComponent extends Component {
       this.deviceLocale = props.deviceLocale || 'en'; // ex: en, fr
       this.rules = props.rules || defaultRules; // rules for Validation
       this.messages = props.messages || defaultMessages;
+      this.state = { error: false };
   }
 
   /*
@@ -77,6 +78,7 @@ export default class ValidationComponent extends Component {
         messages: [errMsg]
       });
     }
+    this.setState({ error: true });
   }
 
   // Reset error fields
