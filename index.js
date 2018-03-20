@@ -69,11 +69,13 @@ export default class ValidationComponent extends Component {
       // Update existing element
       const index = this.errors.indexOf(error);
       error.messages.push(errMsg);
+      error.failedRules.push(rule);
       this.errors[index] = error;
     } else {
       // Add new item
       this.errors.push({
         fieldName,
+        failedRules: [rule],
         messages: [errMsg]
       });
     }
@@ -91,6 +93,25 @@ export default class ValidationComponent extends Component {
 
   isFormValid() {
     return this.errors.length == 0;
+  }
+
+  // Return an object where the keys are the field names and the value is an array with the rules that failed validation
+  getFailedRules() {
+    let failedRulesPerField = {}
+    for (let index = 0; index < this.errors.length; index++) {
+      let error = this.errors[index];
+      failedRulesPerField[error.fieldName] = error.failedRules
+    }
+    return failedRulesPerField
+  }
+
+  // Return the rules that failed validation for the given field
+  getFailedRulesInField(fieldName) {
+    const foundError = this.errors.find(err => err.fieldName === fieldName)
+    if (!foundError) {
+      return []
+    }
+    return foundError.failedRules
   }
 
   // Concatenate each error messages
