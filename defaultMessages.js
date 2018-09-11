@@ -45,7 +45,7 @@ const defaultMessages = {
       date: 'O campo "{0}" precisa conter uma data válida ({1}).',
       minlength: 'O campo "{0}" precisa ser maior que {1} caracteres.',
       maxlength: 'O campo "{0}" precisa ser menor que {1} caracteres.'
-    }
+    },
     // Spanish language
     es: {
       numbers: 'El campo "{0}" debe ser un número válido.',
