@@ -6,14 +6,14 @@ The library is voluntarily easy to use. You juste have to extends the "Validatio
 
 ## 1. Installation
 * Run npm install 'react-native-form-validator' to fetch the library :
-```
+```sh
 npm install 'react-native-form-validator' --save
 ```
 
 ## 2. Use it in your app
 
 Extend "ValidationComponent" class on a your form component :
-```
+```js
 import React from 'react';
 import ValidationComponent from 'react-native-form-validator';
 
@@ -24,7 +24,7 @@ export default class MyForm extends ValidationComponent {
 The ValidationComponent extends the React.Component class.
 
 To ensure form validation you have to call the "this.validate" method in a custom function.
-```
+```js
 constructor(props) {
   super(props);
   this.state = {name : "My name", email: "titi@gmail.com", number:"56", date: "2017-03-01"};
@@ -55,7 +55,7 @@ You will find bellow the default rules available in the library [defaultRules.js
 |maxlength|Check if a state variable is lower than maxlength.|
 
 You can also override this file via the component React props :
-```
+```js
 const rules = {any: /^(.*)$/};
 
 <FormTest rules={rules} />
@@ -74,7 +74,7 @@ Once you have extended the class a set of usefull methods become avaiblable :
 
 The library also contains a [defaultMessages.js](./defaultMessages.js) file wich includes the errors label for a language locale.
 You can override this file via the component React props :
-```
+```js
 const messages = {
   en: {numbers: "error on numbers !"},
   fr: {numbers: "erreur sur numbers !"}
@@ -85,7 +85,7 @@ const messages = {
 
 You can also specify the default custom language locale in the props :
 
-```
+```js
 <FormTest deviceLocale="fr" />
 ```
 
@@ -94,7 +94,7 @@ You can also specify the default custom language locale in the props :
 
 You can find a complete example in the [formTest.js](./test/formTest.js) file :
 
-```
+```js
 'use strict';
 
 import React, {Component}  from 'react';
