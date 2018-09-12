@@ -39,12 +39,21 @@ const defaultMessages = {
     },
     // Portuguese language of Brazil
     ptBR: {
-      numbers: 'O campo "{0}" precisar conter um número válido',
+      numbers: 'O campo "{0}" precisar conter um número válido.',
       email: 'O campo "{0}" precisa conter um email válido.',
       required: 'O campo "{0}" é obrigatório.',
       date: 'O campo "{0}" precisa conter uma data válida ({1}).',
-      minlength: 'O campo "{0}" precisa ser maior que {1} caracteres',
+      minlength: 'O campo "{0}" precisa ser maior que {1} caracteres.',
       maxlength: 'O campo "{0}" precisa ser menor que {1} caracteres.'
+    },
+    // Spanish language
+    es: {
+      numbers: 'El campo "{0}" debe ser un número válido.',
+      email: 'El campo "{0}" debe ser un email válido.',
+      required: 'El campo "{0}" es requerido.',
+      date: 'El campo "{0}" debe contener una fecha válida ({1}).',
+      minlength: 'La longitud del campo "{0}" debe ser mayor que {1} caracteres',
+      maxlength: 'La longitud del campo "{0}" debe ser menor que {1} caracteres.'
     }
     // TODO Add other languages here...
 };
