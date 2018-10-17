@@ -137,3 +137,9 @@ ValidationComponent.propTypes = {
   rules: PropTypes.object, // rules for validations
   messages : PropTypes.object // messages for validation errors
 }
+
+ValidationComponent.defaultProps = {
+  deviceLocale: 'en',
+  rules: defaultRules,
+  messages: defaultMessages
+};
