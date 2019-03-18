@@ -5,7 +5,7 @@ import moment from 'moment';
 // Custom default rules to validate form fields
 const defaultRules = {
   numbers: /^(([0-9]*)|(([0-9]*)\.([0-9]*)))$/,
-  email: /^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$/,
+  email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
   required: /\S+/,
   date(format="YYYY-MM-DD", value) {
     const d = moment(value, format);
