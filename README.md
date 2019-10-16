@@ -69,8 +69,8 @@ Once you have extended the class a set of usefull methods become avaiblable :
 |this.validate(state_rules)|Boolean|This method ensures form validation within the object passed in argument.The object should be a representation of the React component state. The first graph level matches with the React state variables.The second level matches with the existing validation rules.|
 |this.isFormValid()|Boolean|This method indicates if the form is valid and if there is no errors.|
 |this.isFieldInError(fieldName)|Boolean|This method indicates if a specific field is in error. The field name will matches with your React state|
-|this.getErrorMessages(separator)|String|This method retruns the different error messages bound to your React state. The argument is optional, by default the separator is a \n. Under the hood a join method is used.|
-|this.getErrorsInField(fieldName)|Array|This method retruns the error messages bound to the specified field. The field name will match with your React state. it returns an empty array if no error was bound to the filed.|
+|this.getErrorMessages(separator)|String|This method returns the different error messages bound to your React state. The argument is optional, by default the separator is a \n. Under the hood a join method is used.|
+|this.getErrorsInField(fieldName)|Array|This method returns the error messages bound to the specified field. The field name will match with your React state. it returns an empty array if no error was bound to the filed.|
 
 The library also contains a [defaultMessages.js](./defaultMessages.js) file wich includes the errors label for a language locale.
 You can override this file via the component React props :
