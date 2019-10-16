@@ -50,7 +50,7 @@ export default class ValidationComponent extends Component {
 
   // Method to check rules on a spefific field
   _checkRules(fieldName, rules, value) {
-    if (!value.length && !rules.required ) { 
+    if (!value && !rules.required ) { 
       return; // if value is empty AND its not required by the rules, no need to check any other rules
     }
     for (const key of Object.keys(rules)) {
