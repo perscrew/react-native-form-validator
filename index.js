@@ -1,11 +1,9 @@
 'use strict';
 
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-
-import defaultRules from './defaultRules';
+import { Component } from 'react';
 import defaultMessages from './defaultMessages';
+import defaultRules from './defaultRules';
 
 export default class ValidationComponent extends Component {
 
