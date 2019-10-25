@@ -1,15 +1,13 @@
 'use strict';
 
-import React, {Component} from 'react';
-import { Text, View, TextInput } from 'react-native';
-import {shallow, mount} from 'enzyme';
-import Moment from 'moment';
-import {expect} from 'chai';
-import sinon from 'sinon';
+import { expect } from 'chai';
+import { mount, shallow } from 'enzyme';
+/*---------------- mock DOM ----------------*/
+import { jsdom } from 'jsdom';
+import React from 'react';
+import { TextInput } from 'react-native';
 import FormTest from './formTest';
 
-/*---------------- mock DOM ----------------*/
-import {jsdom} from 'jsdom';
 var exposedProperties = ['window', 'navigator', 'document'];
 
 global.document = jsdom('');
@@ -84,7 +82,7 @@ describe('ValidationComponent:', () => {
     formTest._onPressButton();
 
     expect(formTest.isFormValid()).to.equal(false);
-    expect(formTest.getErrorMessages()).to.equal('The field "name" length must be greater than 3.');
+    expect(formTest.getErrorMessages()).to.equal('The field "name" length must be greater than 2.');
     expect(formTest.isFieldInError('name')).to.equal(true);
 
     // Seize an empty value
@@ -92,9 +90,9 @@ describe('ValidationComponent:', () => {
     formTest._onPressButton();
     expect(formTest.isFormValid()).to.equal(false);
     expect(formTest.getErrorMessages()).to.
-      equal('The field "name" length must be greater than 3.\nThe field "name" is mandatory.');
+      equal('The field "name" length must be greater than 2.\nThe field "name" is mandatory.');
     expect(formTest.getErrorsInField('name')).to.deep.equal([
-      'The field "name" length must be greater than 3.',
+      'The field "name" length must be greater than 2.',
       'The field "name" is mandatory.'
     ])
     expect(formTest.isFieldInError('name')).to.equal(true);
