@@ -77,7 +77,7 @@ You can override this file via the component React props :
 ```js
 const messages = {
   en: {numbers: "error on numbers !"},
-  fr: {numbers: "erreur sur numbers !"}
+  fr: {numbers: "erreur sur les nombres !"}
 };
 
 <FormTest messages={messages} />

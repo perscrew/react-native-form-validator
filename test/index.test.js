@@ -197,7 +197,7 @@ describe('ValidationComponent:', () => {
   it('messages props should be updated', () => {
     const messages = {
       en: {numbers: "error on numbers !"},
-      fr: {numbers: "erreur sur numbers !"}
+      fr: {numbers: "erreur sur les nombres !"}
     };
     const wrapper = shallow(<FormTest messages={messages} />);
     const formTest = wrapper.instance();
