@@ -48,7 +48,7 @@ export default class ValidationComponent extends Component {
 
   // Method to check rules on a spefific field
   _checkRules(fieldName, rules, value) {
-    if (!value && !rules.required ) { 
+    if (!value && !rules.required ) {
       return; // if value is empty AND its not required by the rules, no need to check any other rules
     }
     for (const key of Object.keys(rules)) {
@@ -64,6 +64,7 @@ export default class ValidationComponent extends Component {
   // ex:
   // [{ fieldName: "name", messages: ["The field name is required."] }]
   _addError(fieldName, rule, value, isFn) {
+    value = rule == 'minlength'? value-1 : value;
     const errMsg = this.messages[this.deviceLocale][rule].replace("{0}", fieldName).replace("{1}", value);
     let [error] = this.errors.filter(err => err.fieldName === fieldName);
     // error already exists
