@@ -46,14 +46,16 @@ export default class ValidationComponent extends Component {
       if(typeof object[key] === 'object' && fields[key]){
         this.validateObject(fields[key], object[key], key)
       }
-      // Check if child name is equals to fields array set up in parameters
-      const rules = fields[key];
-      if (rules) {
-        // Check rule for current field
-        if(parentFieldName == null || parentFieldName==='undefined')
-          this._checkRules(key, rules, object[key]);
-        else
-          this._checkRules(parentFieldName + "." + key, rules, object[key]);
+      else{
+        // Check if child name is equals to fields array set up in parameters
+        const rules = fields[key];
+        if (rules) {
+          // Check rule for current field
+          if(parentFieldName == null || parentFieldName==='undefined')
+            this._checkRules(key, rules, object[key]);
+          else
+            this._checkRules(parentFieldName + "." + key, rules, object[key]);
+        }
       }
     }
   }
