@@ -35,15 +35,27 @@ export default class ValidationComponent extends Component {
     // Reset errors
     this._resetErrors();
     // Iterate over inner state
-    for (const key of Object.keys(this.state)) {
+    this.validateObject(fields, this.state)
+    return this.isFormValid();
+  }
+
+  validateObject(fields, object, parentFieldName) {
+    if(object == null || object==='undefined') return;
+    
+    for (const key of Object.keys(object)) {
+      if(typeof object[key] === 'object' && fields[key]){
+        this.validateObject(fields[key], object[key], key)
+      }
       // Check if child name is equals to fields array set up in parameters
       const rules = fields[key];
       if (rules) {
         // Check rule for current field
-        this._checkRules(key, rules, this.state[key]);
+        if(parentFieldName == null || parentFieldName==='undefined')
+          this._checkRules(key, rules, object[key]);
+        else
+          this._checkRules(parentFieldName + "." + key, rules, object[key]);
       }
-    };
-    return this.isFormValid();
+    }
   }
 
   // Method to check rules on a spefific field
