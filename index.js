@@ -43,7 +43,7 @@ export default class ValidationComponent extends Component {
     if(object == null || object==='undefined') return;
     
     for (const key of Object.keys(object)) {
-      if(typeof object[key] === 'object' && fields[key]){
+      if(typeof object[key] === 'object' && !Array.isArray(object[key]) && fields[key]){
         this.validateObject(fields[key], object[key], key)
       }
       else{
@@ -65,6 +65,7 @@ export default class ValidationComponent extends Component {
     if (!value && !rules.required ) {
       return; // if value is empty AND its not required by the rules, no need to check any other rules
     }
+
     for (const key of Object.keys(rules)) {
       const isRuleFn = (typeof this.rules[key] == "function");
       const isRegExp = (this.rules[key] instanceof RegExp);
