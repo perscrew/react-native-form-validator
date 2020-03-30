@@ -54,6 +54,15 @@ const defaultMessages = {
       date: 'El campo "{0}" debe contener una fecha válida ({1}).',
       minlength: 'La longitud del campo "{0}" debe ser mayor que {1} caracteres',
       maxlength: 'La longitud del campo "{0}" debe ser menor que {1} caracteres.'
+    },
+    // Turkish language - Used by default
+    tr: {
+      numbers: '"{0}" alanı geçerli bir sayı olmalıdır.',
+      email: '"{0}" alanı geçerli bir email adresi olmalıdır.',
+      required: '"{0}" alanı gereklidir.',
+      date: '"{0}" alanı geçerli bir tarih olmalıdır. ({1}).',
+      minlength: '"{0}" alanı {1} karakterden daha uzun olmalıdır.',
+      maxlength: '"{0}" alanı {1} karakterden daha kısa olmalıdır.'
     }
     // TODO Add other languages here...
 };
