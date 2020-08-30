@@ -65,14 +65,8 @@ export default class ValidationComponent extends Component {
   // ex:
   // [{ fieldName: "name", messages: ["The field name is required."] }]
   _addError(fieldName, rule, value, isFn) {
-    let name;
-    for (let key of Object.keys(this.labels)) {
-      if (key === fieldName) {
-        name = this.labels[key];
-      }
-    }
     value = rule == 'minlength' ? value - 1 : value;
-    const errMsg = this.messages[this.deviceLocale][rule].replace("{0}", name || fieldName).replace("{1}", value);
+    const errMsg = this.messages[this.deviceLocale][rule].replace("{0}", this.labels[fieldName] || fieldName).replace("{1}", value);
     let [error] = this.errors.filter(err => err.fieldName === fieldName);
     // error already exists
     if (error) {
@@ -145,5 +139,5 @@ ValidationComponent.propTypes = {
   deviceLocale: PropTypes.string, // Used for language locale
   rules: PropTypes.object, // rules for validations
   messages: PropTypes.object, // messages for validation errors
-  labels: PropTypes.Object, /// labels for validation messages
+  labels: PropTypes.Object, // labels for validation messages
 }
