@@ -8,17 +8,17 @@ import defaultRules from './defaultRules';
 export default class ValidationComponent extends Component {
 
   constructor(props) {
-      super(props);
-      // array to store error on each fields
-      // ex:
-      // [{ fieldName: "name", messages: ["The field name is required."] }]
-      this.errors = [];
-      // Retrieve props
-      this.deviceLocale = props.deviceLocale || 'en'; // ex: en, fr
-      this.rules = props.rules || defaultRules; // rules for Validation
-      this.messages = props.messages || defaultMessages;
-      this.labels = props.labels || {};
-      this.state = { error: false };
+    super(props);
+    // array to store error on each fields
+    // ex:
+    // [{ fieldName: "name", messages: ["The field name is required."] }]
+    this.errors = [];
+    // Retrieve props
+    this.deviceLocale = props.deviceLocale || 'en'; // ex: en, fr
+    this.rules = props.rules || defaultRules; // rules for Validation
+    this.messages = props.messages || defaultMessages;
+    this.labels = props.labels || {};
+    this.state = { error: false };
   }
 
   /*
@@ -49,7 +49,7 @@ export default class ValidationComponent extends Component {
 
   // Method to check rules on a spefific field
   _checkRules(fieldName, rules, value) {
-    if (!value && !rules.required ) {
+    if (!value && !rules.required) {
       return; // if value is empty AND its not required by the rules, no need to check any other rules
     }
     for (const key of Object.keys(rules)) {
@@ -71,7 +71,7 @@ export default class ValidationComponent extends Component {
         name = this.labels[key];
       }
     }
-    value = rule == 'minlength'? value-1 : value;
+    value = rule == 'minlength' ? value - 1 : value;
     const errMsg = this.messages[this.deviceLocale][rule].replace("{0}", name || fieldName).replace("{1}", value);
     let [error] = this.errors.filter(err => err.fieldName === fieldName);
     // error already exists
@@ -126,7 +126,7 @@ export default class ValidationComponent extends Component {
   }
 
   // Concatenate each error messages
-  getErrorMessages(separator="\n") {
+  getErrorMessages(separator = "\n") {
     return this.errors.map((err) => err.messages.join(separator)).join(separator);
   }
 
@@ -144,6 +144,6 @@ export default class ValidationComponent extends Component {
 ValidationComponent.propTypes = {
   deviceLocale: PropTypes.string, // Used for language locale
   rules: PropTypes.object, // rules for validations
-  messages : PropTypes.object, // messages for validation errors
-  labels: PropTypes.Object,
+  messages: PropTypes.object, // messages for validation errors
+  labels: PropTypes.Object, /// labels for validation messages
 }
