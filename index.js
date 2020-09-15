@@ -140,5 +140,13 @@ ValidationComponent.propTypes = {
   deviceLocale: PropTypes.string, // Used for language locale
   rules: PropTypes.object, // rules for validations
   messages: PropTypes.object, // messages for validation errors
-  labels: PropTypes.Object, // labels for validation messages
+  labels: PropTypes.object, // labels for validation messages
+
 }
+// DefaultProps for component
+ValidationComponent.defaultProps = {
+  deviceLocale: 'en',
+  rules: defaultRules,
+  messages: defaultMessages,
+  labels: {}
+};

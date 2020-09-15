@@ -1,7 +1,7 @@
 # React native form validator
 [![Build Status](https://travis-ci.org/perscrew/react-native-form-validator.svg?branch=master)](https://travis-ci.org/perscrew/react-native-form-validator)
 
-React native form validator is a simple library to validate your form fiels with React Native.
+React native form validator is a simple library to validate your form fields with React Native.
 The library is voluntarily easy to use. You juste have to extends the "ValidationComponent" class on your desired React native form component.
 
 ## 1. Installation
@@ -53,6 +53,7 @@ You will find bellow the default rules available in the library [defaultRules.js
 |date|Check if a state variable respects the date pattern. Ex: date: 'YYYY-MM-DD'|
 |minlength|Check if a state variable is greater than minlength.|
 |maxlength|Check if a state variable is lower than maxlength.|
+|equalPassword|Check if a state variable is equal to antoher value (useful for password confirm).|
 
 You can also override this file via the component React props :
 ```js
@@ -105,7 +106,7 @@ export default class FormTest extends ValidationComponent {
 
   constructor(props) {
     super(props);
-    this.state = {name : "My name", email: "tibtib@gmail.com", number:"56", date: "2017-03-01"};
+    this.state = {name : "My name", email: "tibtib@gmail.com", number:"56", date: "2017-03-01", newPassword : "", confirmPassword : ""};
   }
 
   _onPressButton() {
@@ -114,7 +115,8 @@ export default class FormTest extends ValidationComponent {
       name: {minlength:3, maxlength:7, required: true},
       email: {email: true},
       number: {numbers: true},
-      date: {date: 'YYYY-MM-DD'}
+      date: {date: 'YYYY-MM-DD'},
+      confirmPassword : {equalPassword : this.state.newPassword}
     });
   }
 
@@ -126,6 +128,10 @@ export default class FormTest extends ValidationComponent {
           <TextInput ref="number" onChangeText={(number) => this.setState({number})} value={this.state.number} />
           <TextInput ref="date" onChangeText={(date) => this.setState({date})} value={this.state.date} />
           {this.isFieldInError('date') && this.getErrorsInField('date').map(errorMessage => <Text>{errorMessage}</Text>) }
+
+          <TextInput ref="newPassword" onChangeText={(newPassword) => this.setState({newPassword})} value={this.state.newPassword}  secureTextEntry={true}/>
+          <TextInput ref="confirmPassword" onChangeText={(confirmPassword) => this.setState({confirmPassword})} value={this.state.confirmPassword} secureTextEntry={true} />
+          {this.isFieldInError('confirmPassword') && this.getErrorsInField('confirmPassword').map(errorMessage => <Text>{errorMessage}</Text>) }
 
           <TouchableHighlight onPress={this._onPressButton}>
             <Text>Submit</Text>
