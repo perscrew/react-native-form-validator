@@ -8,7 +8,8 @@ const defaultMessages = {
       required: 'The field "{0}" is mandatory.',
       date: 'The field "{0}" must be a valid date ({1}).',
       minlength: 'The field "{0}" length must be greater than {1}.',
-      maxlength: 'The field "{0}" length must be lower than {1}.'
+      maxlength: 'The field "{0}" length must be lower than {1}.',
+      equalPassword : 'Passwords are differents'
     },
     // French language
     fr: {
@@ -17,7 +18,8 @@ const defaultMessages = {
       required: 'Le champ "{0}" est obligatoire.',
       date: 'Le champ "{0}" doit correspondre à une date valide ({1}).',
       minlength: 'Le nombre de caractère du champ "{0}" doit être supérieur à {1}.',
-      maxlength: 'Le nombre de caractère du champ "{0}" doit être inférieur à {1}.'
+      maxlength: 'Le nombre de caractère du champ "{0}" doit être inférieur à {1}.',
+      equalPassword : 'Les mots de passes sont differents'
     },
     // Persian (Farsi) language
     fa: {
@@ -26,7 +28,8 @@ const defaultMessages = {
       required: 'فیلد "{0}" نباید خالی باشد.',
       date: 'فیلد "{0}" باید یک تاریخ ({1}) باشد.',
       minlength: 'طول فیلد "{0}" باید بیشتر از "{1}" باشد.',
-      maxlength: 'طول فیلد "{0}" باید کمتر از "{1}" باشد.'
+      maxlength: 'طول فیلد "{0}" باید کمتر از "{1}" باشد.',
+      equalPassword: 'رمزهای عبور متفاوت هستند'
     },
     // Indonesian language
     id: {
@@ -35,7 +38,8 @@ const defaultMessages = {
       required: '"{0}" harus diisi',
       date: 'Format tanggal pada "{0}" harus ({1})',
       minlength: '"{0}" harus lebih dari {1} karakter',
-      maxlength: '"{0}" harus kurang dari {1} karakter'
+      maxlength: '"{0}" harus kurang dari {1} karakter',
+      equalPassword: 'Kata sandi berbeda'
     },
     // Portuguese language of Brazil
     ptBR: {
@@ -44,7 +48,8 @@ const defaultMessages = {
       required: 'O campo "{0}" é obrigatório.',
       date: 'O campo "{0}" precisa conter uma data válida ({1}).',
       minlength: 'O campo "{0}" precisa ser maior que {1} caracteres.',
-      maxlength: 'O campo "{0}" precisa ser menor que {1} caracteres.'
+      maxlength: 'O campo "{0}" precisa ser menor que {1} caracteres.',
+      equalPassword: 'As senhas são diferentes'
     },
     // Spanish language
     es: {
@@ -53,7 +58,8 @@ const defaultMessages = {
       required: 'El campo "{0}" es requerido.',
       date: 'El campo "{0}" debe contener una fecha válida ({1}).',
       minlength: 'La longitud del campo "{0}" debe ser mayor que {1} caracteres',
-      maxlength: 'La longitud del campo "{0}" debe ser menor que {1} caracteres.'
+      maxlength: 'La longitud del campo "{0}" debe ser menor que {1} caracteres.',
+      equalPassword: 'Las contraseñas son diferentes'
     },
     // Turkish language - Used by default
     tr: {
@@ -62,7 +68,8 @@ const defaultMessages = {
       required: '"{0}" alanı gereklidir.',
       date: '"{0}" alanı geçerli bir tarih olmalıdır. ({1}).',
       minlength: '"{0}" alanı {1} karakterden daha uzun olmalıdır.',
-      maxlength: '"{0}" alanı {1} karakterden daha kısa olmalıdır.'
+      maxlength: '"{0}" alanı {1} karakterden daha kısa olmalıdır.',
+      equalPassword : 'Şifreler farklı'
     }
     // TODO Add other languages here...
 };
