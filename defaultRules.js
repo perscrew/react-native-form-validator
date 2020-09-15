@@ -29,7 +29,7 @@ const defaultRules = {
     return true;
   },
   equalPassword(dataToCompare, value) {
-    return dataToCompare == value;
+    return dataToCompare === value;
    }
 };
 
