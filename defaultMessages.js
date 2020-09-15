@@ -11,6 +11,15 @@ const defaultMessages = {
       maxlength: 'The field "{0}" length must be lower than {1}.',
       equalPassword : 'Passwords are differents'
     },
+    //Arabic language
+    ar: {
+      numbers: 'الحقل "{0}" يجب أن يكون رقم صحيح',
+      email: 'الحقل "{0}" يجب أن يكون بريد إلكتروني صحيح',
+      required: 'الحقل "{0}" مطلوب',
+      date: 'الحقل "{0}" يجب أن يكون تاريخ صحيح ({1}).',
+      minlength: 'الحقل "{0}" يجب أن يكون أكثر من {1}.',
+      maxlength: 'الحقل "{0}" يجب أن يكون أقل من {1}.'
+    },
     // French language
     fr: {
       numbers: 'Le champ "{0}" doit être un nombre valide.',
