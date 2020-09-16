@@ -41,9 +41,9 @@ const defaultMessages = {
     maxlength: 'Le nombre de caractère du champ "{0}" doit être inférieur à {1}.',
     equalPassword: 'Les mots de passes sont differents',
     hasNumber: 'Le champ "{0}" doit contenir un chiffre.',
-    hasUpperCase: 'Le champ "{0}" doit contenir une majuscule',
-    hasLowerCase: 'Le champ "{0}" doit contenir une minuscule',
-    hasSpecialCharacter: 'Le champ "{0}" doit contenir un caractère spécial',
+    hasUpperCase: 'Le champ "{0}" doit contenir une majuscule.',
+    hasLowerCase: 'Le champ "{0}" doit contenir une minuscule.',
+    hasSpecialCharacter: 'Le champ "{0}" doit contenir un caractère spécial.',
   },
   // Persian (Farsi) language
   fa: {
