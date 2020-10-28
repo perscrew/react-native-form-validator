@@ -79,7 +79,16 @@ const defaultMessages = {
       minlength: '"{0}" alanı {1} karakterden daha uzun olmalıdır.',
       maxlength: '"{0}" alanı {1} karakterden daha kısa olmalıdır.',
       equalPassword : 'Şifreler farklı'
-    }
+    },
+    it: {
+      numbers: 'Il campo "{0}" deve contenere solo numeri.',
+      email: 'Il campo "{0}" deve contenere un indirizzo email valido.',
+      required: 'Il campo "{0}" é obbligatorio.',
+      date: 'Il campo "{0}" deve contenere una data valida ({1}).',
+      minlength: 'Il campo "{0}" deve contenere almeno {1} caratteri.',
+      maxlength: 'Il campo "{0}" deve contenere meno di {1} caratteri.',
+      equalPassword : 'Le passwords inserite sono differenti'
+    },
     // TODO Add other languages here...
 };
 
