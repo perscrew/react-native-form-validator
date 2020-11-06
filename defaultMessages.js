@@ -18,7 +18,8 @@ const defaultMessages = {
       required: 'الحقل "{0}" مطلوب',
       date: 'الحقل "{0}" يجب أن يكون تاريخ صحيح ({1}).',
       minlength: 'الحقل "{0}" يجب أن يكون أكثر من {1}.',
-      maxlength: 'الحقل "{0}" يجب أن يكون أقل من {1}.'
+      maxlength: 'الحقل "{0}" يجب أن يكون أقل من {1}.',
+      equalPassword: 'كلمات المرور مختلفة.'
     },
     // French language
     fr: {
