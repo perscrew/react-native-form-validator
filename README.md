@@ -77,7 +77,7 @@ Once you have extended the class a set of usefull methods become avaiblable :
 |this.getErrorMessages(separator)|String|This method returns the different error messages bound to your React state. The argument is optional, by default the separator is a \n. Under the hood a join method is used.|
 |this.getErrorsInField(fieldName)|Array|This method returns the error messages bound to the specified field. The field name will match with your React state. it returns an empty array if no error was bound to the filed.|
 
-The library also contains a [defaultMessages.js](./defaultMessages.js) file wich includes the errors label for a language locale.
+The library also contains a [defaultMessages.js](./defaultMessages.js) file which includes the errors label for a language locale.
 You can override this file via the component React props :
 ```js
 const messages = {
@@ -86,6 +86,17 @@ const messages = {
 };
 
 <FormTest messages={messages} />
+```
+You can add custom labels to the state variables, it will be useful if want to change it's label in the error messages or translate it
+ to the language locale :
+```js
+const labels = {
+  name: 'Name',
+  email: 'E-mail',
+  number: 'Phone number'
+};
+
+<FormTest labels={labels} />
 ```
 
 You can also specify the default custom language locale in the props :
