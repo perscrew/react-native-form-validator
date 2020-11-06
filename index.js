@@ -88,6 +88,7 @@ export default class ValidationComponent extends Component {
   // Reset error fields
   _resetErrors() {
     this.errors = [];
+    this.setState({ error: false });
   }
 
   // Method to check if the field is in error
