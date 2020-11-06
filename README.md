@@ -93,7 +93,20 @@ You can also specify the default custom language locale in the props :
 ```js
 <FormTest deviceLocale="fr" />
 ```
+### Dynamic validation onChangeText 
+You can also use dynamic validation by calling validate function on onChangeText event :
 
+```js
+<Input ref="lastName" placeholder={ApiUtils.translate('profile.lastname') + ' *'} 
+                onChangeText={(lastName) => {
+                  this.setState({ lastName }, () => {
+                    this.validate({
+                      lastName: { required: true },
+                    })
+                  })
+                }} value={this.state.lastName} style={[styles.input]} />
+{this.isFieldInError('lastName') && this.getErrorsInField('lastName').map(errorMessage => <Text style={styles.error}>{errorMessage}</Text>)}
+```
 
 ## 3. Complete example
 
