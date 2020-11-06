@@ -54,6 +54,10 @@ You will find bellow the default rules available in the library [defaultRules.js
 |minlength|Check if a state variable is greater than minlength.|
 |maxlength|Check if a state variable is lower than maxlength.|
 |equalPassword|Check if a state variable is equal to antoher value (useful for password confirm).|
+|hasNumber|Check if a state variable contains a number.|
+|hasUpperCase|Check if a state variable contains a upper case letter.|
+|hasLowerCase|Check if a state variable contains a lower case letter.|
+|hasSpecialCharacter|Check if a state variable contains a special character.|
 
 You can also override this file via the component React props :
 ```js

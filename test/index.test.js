@@ -24,7 +24,7 @@ global.navigator = {
 };
 
 global.ErrorUtils = {
-  setGlobalHandler: () => {}
+  setGlobalHandler: () => { }
 };
 
 
@@ -58,7 +58,7 @@ describe('ValidationComponent:', () => {
     textInput.simulate('changeText', "na"); // minlength = 3
 
     const formTest = wrapper.instance();
-    expect(formTest.validate({name: {minlength:3}})).to.equal(false);
+    expect(formTest.validate({ name: { minlength: 3 } })).to.equal(false);
   });
 
   it('empty field with required rule should not be ok', () => {
@@ -68,7 +68,7 @@ describe('ValidationComponent:', () => {
     textInput.simulate('changeText', ""); // minlength = 3
 
     const formTest = wrapper.instance();
-    expect(formTest.validate({name: {required:true}})).to.equal(false);
+    expect(formTest.validate({ name: { required: true } })).to.equal(false);
   });
 
   it('fields validation name should not be ok', () => {
@@ -122,7 +122,7 @@ describe('ValidationComponent:', () => {
 
   it('fields validation date should not be ok', () => {
     const wrapper = shallow(<FormTest />);
-    const textInput = wrapper.find(TextInput).last(); // date input
+    const textInput = wrapper.find(TextInput).at(3); // date input
     textInput.simulate('changeText', "fdsfds");
 
     const formTest = wrapper.instance();
@@ -159,7 +159,7 @@ describe('ValidationComponent:', () => {
 
     expect(formTest.isFormValid()).to.equal(false);
     expect(formTest.getErrorMessages()).to.
-    equal('The field "number" must be a valid number.');
+      equal('The field "number" must be a valid number.');
     expect(formTest.getErrorsInField('number')).to.deep.equal(['The field "number" must be a valid number.'])
     expect(formTest.isFieldInError('number')).to.equal(true);
   });
@@ -186,7 +186,7 @@ describe('ValidationComponent:', () => {
   });
 
   it('rules props should be updated', () => {
-    const rules = {any: /^(.*)$/};
+    const rules = { any: /^(.*)$/ };
     const wrapper = shallow(<FormTest rules={rules} />);
     const formTest = wrapper.instance();
     expect(formTest.rules).to.equal(rules);
@@ -194,12 +194,108 @@ describe('ValidationComponent:', () => {
 
   it('messages props should be updated', () => {
     const messages = {
-      en: {numbers: "error on numbers !"},
-      fr: {numbers: "erreur sur les nombres !"}
+      en: { numbers: "error on numbers !" },
+      fr: { numbers: "erreur sur les nombres !" }
     };
     const wrapper = shallow(<FormTest messages={messages} />);
     const formTest = wrapper.instance();
     expect(formTest.messages).to.equal(messages);
+  });
+
+  it("fields password doesn't have number - not ok", () => {
+    const wrapper = shallow(<FormTest />);
+    const textInput = wrapper.find(TextInput).at(4); // number input
+    textInput.simulate('changeText', "Azerty*");
+    const textInput2 = wrapper.find(TextInput).at(5); // number input
+    textInput2.simulate('changeText', "Azerty*");
+
+    const formTest = wrapper.instance();
+    formTest._onPressButton();
+
+    expect(formTest.isFormValid()).to.equal(false);
+    expect(formTest.getErrorMessages()).to.
+      equal('The field "password" must contain a number.');
+    expect(formTest.isFieldInError('password')).to.equal(true);
+  });
+
+  it("field password doesn't have special character - not ok", () => {
+    const wrapper = shallow(<FormTest />);
+    const textInput = wrapper.find(TextInput).at(4); // number input
+    textInput.simulate('changeText', "Azerty1");
+    const textInput2 = wrapper.find(TextInput).at(5); // number input
+    textInput2.simulate('changeText', "Azerty1");
+
+    const formTest = wrapper.instance();
+    formTest._onPressButton();
+
+    expect(formTest.isFormValid()).to.equal(false);
+    expect(formTest.getErrorMessages()).to.
+      equal('The field "password" must contain a special character.');
+    expect(formTest.isFieldInError('password')).to.equal(true);
+  });
+
+  it("field password doesn't have lower case - not ok", () => {
+    const wrapper = shallow(<FormTest />);
+    const textInput = wrapper.find(TextInput).at(4); // number input
+    textInput.simulate('changeText', "A1*");
+    const textInput2 = wrapper.find(TextInput).at(5); // number input
+    textInput2.simulate('changeText', "A1*");
+
+    const formTest = wrapper.instance();
+    formTest._onPressButton();
+
+    expect(formTest.isFormValid()).to.equal(false);
+    expect(formTest.getErrorMessages()).to.
+      equal('The field "password" must contain a lower case.');
+    expect(formTest.isFieldInError('password')).to.equal(true);
+  });
+
+  it("field password doesn't have upper case - not ok", () => {
+    const wrapper = shallow(<FormTest />);
+    const textInput = wrapper.find(TextInput).at(4); // number input
+    textInput.simulate('changeText', "a1*");
+    const textInput2 = wrapper.find(TextInput).at(5); // number input
+    textInput2.simulate('changeText', "a1*");
+
+    const formTest = wrapper.instance();
+    formTest._onPressButton();
+
+    expect(formTest.isFormValid()).to.equal(false);
+    expect(formTest.getErrorMessages()).to.
+      equal('The field "password" must contain a upper case.');
+    expect(formTest.isFieldInError('password')).to.equal(true);
+  });
+
+  it("field password is not equal to confirm password - not ok", () => {
+    const wrapper = shallow(<FormTest />);
+    const textInput = wrapper.find(TextInput).at(4); // number input
+    textInput.simulate('changeText', "Aa1*");
+    const textInput2 = wrapper.find(TextInput).at(5); // number input
+    textInput2.simulate('changeText', "a1*");
+
+    const formTest = wrapper.instance();
+    formTest._onPressButton();
+
+    expect(formTest.isFormValid()).to.equal(false);
+    expect(formTest.getErrorMessages()).to.
+      equal('Passwords are different.');
+    expect(formTest.isFieldInError('confirmPassword')).to.equal(true);
+  });
+
+  it("password fields  are ok", () => {
+    const wrapper = shallow(<FormTest />);
+    const textInput = wrapper.find(TextInput).at(4); // number input
+    textInput.simulate('changeText', "Aa1*");
+    const textInput2 = wrapper.find(TextInput).at(5); // number input
+    textInput2.simulate('changeText', "Aa1*");
+
+    const formTest = wrapper.instance();
+    formTest._onPressButton();
+
+    expect(formTest.isFormValid()).to.equal(true);
+    expect(formTest.getErrorMessages()).to.equal("");
+    expect(formTest.isFieldInError('password')).to.equal(false);
+    expect(formTest.isFieldInError('confirmPassword')).to.equal(false);
   });
 
 });
