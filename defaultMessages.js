@@ -9,12 +9,11 @@ const defaultMessages = {
     date: 'The field "{0}" must be a valid date ({1}).',
     minlength: 'The field "{0}" length must be greater than {1}.',
     maxlength: 'The field "{0}" length must be lower than {1}.',
-    equalPassword: 'Passwords are different.',
-    hasNumber: 'The field "{0}" must contain a number.',
-    hasUpperCase: 'The field "{0}" must contain a upper case.',
-    hasLowerCase: 'The field "{0}" must contain a lower case.',
-    hasNumber: 'The field "{0}" must contain a number.',
-    hasSpecialCharacter: 'The field "{0}" must contain a special character.',
+    equalPassword: 'Passwords are differents',
+    hasUpperCase: 'The field "{0}" must contain a uppper case',
+    hasLowerCase: 'The field "{0}" must contain a lower case',
+    hasNumber: 'The field "{0}" must contain a number',
+    hasSpecialCharacter: 'The field "{0}" must contain a special character',
   },
   //Arabic language
   ar: {
@@ -24,12 +23,11 @@ const defaultMessages = {
     date: 'الحقل "{0}" يجب أن يكون تاريخ صحيح ({1}).',
     minlength: 'الحقل "{0}" يجب أن يكون أكثر من {1}.',
     maxlength: 'الحقل "{0}" يجب أن يكون أقل من {1}.',
-    equalPassword: 'كلمات المرور مختلفة',
+    equalPassword: 'كلمات المرور مختلفة.',
     hasNumber: 'يجب أن يحتوي الحقل "{0}" على رقم.',
     hasUpperCase: 'يجب أن يحتوي الحقل "{0}" على حرف كبير',
     hasLowerCase: 'يجب أن يحتوي الحقل "{0}" على أحرف صغيرة',
     hasSpecialCharacter: 'يجب أن يحتوي الحقل "{0}" على رمز خاص',
-
   },
   // French language
   fr: {
@@ -41,9 +39,9 @@ const defaultMessages = {
     maxlength: 'Le nombre de caractère du champ "{0}" doit être inférieur à {1}.',
     equalPassword: 'Les mots de passes sont differents',
     hasNumber: 'Le champ "{0}" doit contenir un chiffre.',
-    hasUpperCase: 'Le champ "{0}" doit contenir une majuscule.',
-    hasLowerCase: 'Le champ "{0}" doit contenir une minuscule.',
-    hasSpecialCharacter: 'Le champ "{0}" doit contenir un caractère spécial.',
+    hasUpperCase: 'Le champ "{0}" doit contenir une majuscule',
+    hasLowerCase: 'Le champ "{0}" doit contenir une minuscule',
+    hasSpecialCharacter: 'Le champ "{0}" doit contenir un caractère spécial',
   },
   // Persian (Farsi) language
   fa: {
@@ -114,7 +112,20 @@ const defaultMessages = {
     hasUpperCase: '"{0}" alanı büyük harf içermelidir',
     hasLowerCase: '"{0}" alanı küçük harf içermelidir',
     hasSpecialCharacter: '"{0}" alanı özel bir karakter içermelidir',
-  }
+  },
+  it: {
+    numbers: 'Il campo "{0}" deve contenere solo numeri.',
+    email: 'Il campo "{0}" deve contenere un indirizzo email valido.',
+    required: 'Il campo "{0}" é obbligatorio.',
+    date: 'Il campo "{0}" deve contenere una data valida ({1}).',
+    minlength: 'Il campo "{0}" deve contenere almeno {1} caratteri.',
+    maxlength: 'Il campo "{0}" deve contenere meno di {1} caratteri.',
+    equalPassword: 'Le passwords inserite sono differenti',
+    hasUpperCase: 'Il campo "{0}" deve contenere una maiuscola',
+    hasLowerCase: 'Il campo "{0}" deve contenere una minuscola',
+    hasNumber: 'Il campo "{0}" deve contenere un numero',
+    hasSpecialCharacter: 'Il campo "{0}" deve contenere un carattere speciale',
+  },
   // TODO Add other languages here...
 };
 
