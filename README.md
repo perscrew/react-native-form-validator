@@ -53,7 +53,7 @@ You will find bellow the default rules available in the library [defaultRules.js
 |date|Check if a state variable respects the date pattern. Ex: date: 'YYYY-MM-DD'|
 |minlength|Check if a state variable is greater than minlength.|
 |maxlength|Check if a state variable is lower than maxlength.|
-|equalPassword|Check if a state variable is equal to antoher value (useful for password confirm).|
+|equalPassword|Check if a state variable is equal to another value (useful for password confirm).|
 |hasNumber|Check if a state variable contains a number.|
 |hasUpperCase|Check if a state variable contains a upper case letter.|
 |hasLowerCase|Check if a state variable contains a lower case letter.|
