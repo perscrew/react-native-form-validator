@@ -9,11 +9,11 @@ const defaultMessages = {
     date: 'The field "{0}" must be a valid date ({1}).',
     minlength: 'The field "{0}" length must be greater than {1}.',
     maxlength: 'The field "{0}" length must be lower than {1}.',
-    equalPassword: 'Passwords are differents',
-    hasUpperCase: 'The field "{0}" must contain a uppper case',
-    hasLowerCase: 'The field "{0}" must contain a lower case',
-    hasNumber: 'The field "{0}" must contain a number',
-    hasSpecialCharacter: 'The field "{0}" must contain a special character',
+    equalPassword: 'Passwords are different.',
+    hasUpperCase: 'The field "{0}" must contain a upper case.',
+    hasLowerCase: 'The field "{0}" must contain a lower case.',
+    hasNumber: 'The field "{0}" must contain a number.',
+    hasSpecialCharacter: 'The field "{0}" must contain a special character.',
   },
   //Arabic language
   ar: {
