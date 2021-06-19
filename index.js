@@ -36,15 +36,29 @@ export default class ValidationComponent extends Component {
     // Reset errors
     this._resetErrors();
     // Iterate over inner state
-    for (const key of Object.keys(this.state)) {
-      // Check if child name is equals to fields array set up in parameters
-      const rules = fields[key];
-      if (rules) {
-        // Check rule for current field
-        this._checkRules(key, rules, this.state[key]);
-      }
-    };
+    this.validateObject(fields, this.state)
     return this.isFormValid();
+  }
+
+  validateObject(fields, object, parentFieldName) {
+    if(object == null || object==='undefined') return;
+    
+    for (const key of Object.keys(object)) {
+      if(typeof object[key] === 'object' && !Array.isArray(object[key]) && fields[key]){
+        this.validateObject(fields[key], object[key], key)
+      }
+      else{
+        // Check if child name is equals to fields array set up in parameters
+        const rules = fields[key];
+        if (rules) {
+          // Check rule for current field
+          if(parentFieldName == null || parentFieldName==='undefined')
+            this._checkRules(key, rules, object[key]);
+          else
+            this._checkRules(parentFieldName + "." + key, rules, object[key]);
+        }
+      }
+    }
   }
 
   // Method to check rules on a spefific field
@@ -52,6 +66,7 @@ export default class ValidationComponent extends Component {
     if (!value && !rules.required ) {
       return; // if value is empty AND its not required by the rules, no need to check any other rules
     }
+
     for (const key of Object.keys(rules)) {
       const isRuleFn = (typeof this.rules[key] == "function");
       const isRegExp = (this.rules[key] instanceof RegExp);
