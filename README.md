@@ -127,7 +127,7 @@ You will use useValidation hook inside your component like this :
 
 ```js
 import { useValidation } from 'react-native-form-validator';
-import customeValidationMessages from './customeValidationMessages';
+import customValidationMessages from './customValidationMessages';
 
 const MyFunction = () => {
   const [email, setEmail] = useState('');
@@ -135,7 +135,7 @@ const MyFunction = () => {
   
   const { validate, getErrorsInField } = useValidation({
     state: { email, name },
-    messages: customeValidationMessages,
+    messages: customValidationMessages,
   });
   
   const _validateForm = () => {
@@ -147,7 +147,7 @@ const MyFunction = () => {
 }
 ```
 You need to pass the state manually to the useValidation hook in state object like above.
-You can also pass custome messages, labels, rules, deviceLocale and it returns object with all the methods that available in the class component.
+You can also pass custom messages, labels, rules, deviceLocale and it returns object with all the methods that available in the class component.
 
 
 ## 3. Complete example
