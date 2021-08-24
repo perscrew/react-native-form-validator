@@ -11,6 +11,8 @@ npm install 'react-native-form-validator' --save
 ```
 
 ## 2. Use it in your app
+### For class component:
+
 
 Extend "ValidationComponent" class on a form component :
 ```js
@@ -119,7 +121,38 @@ You can also use dynamic validation by calling validate function on onChangeText
 {this.isFieldInError('lastName') && this.getErrorsInField('lastName').map(errorMessage => <Text style={styles.error}>{errorMessage}</Text>)}
 ```
 
+### For functional component:
+
+You will use useValidation hook inside your component like this :
+
+```js
+import { useValidation } from 'react-native-form-validator';
+import customeValidationMessages from './customeValidationMessages';
+
+const MyFunction = () => {
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  
+  const { validate, getErrorsInField } = useValidation({
+    state: { email, name },
+    messages: customeValidationMessages,
+  });
+  
+  const _validateForm = () => {
+    validate({
+      email: { email: true },
+      name: { required: true }
+    })
+  }
+}
+```
+You need to pass the state manually to the useValidation hook in state object like above.
+You can also pass custome messages, labels, rules, deviceLocale and it returns object with all the methods that available in the class component.
+
+
 ## 3. Complete example
+
+### Class component:
 
 You can find a complete example in the [formTest.js](./test/formTest.js) file :
 
@@ -173,4 +206,74 @@ export default class FormTest extends ValidationComponent {
   }
 
 }
+```
+
+### Function Component:
+
+```js
+'use strict';
+
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableHighlight } from 'react-native';
+import { useValidation } from 'react-native-form-validator';
+
+const FormTest = () => {
+  const [name, setName] = useState('My name');
+  const [email, setEmail] = useState('tibtib@gmail.com');
+  const [number, setNumber] = useState('56');
+  const [date, setDate] = useState('2017-03-01');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const { validate, isFieldInError, getErrorsInField, getErrorMessages } =
+    useValidation({
+      state: { name, email, number, date, newPassword, confirmPassword },
+    });
+
+  const _onPressButton = () => {
+    validate({
+      name: { minlength: 3, maxlength: 7, required: true },
+      email: { email: true },
+      number: { numbers: true },
+      date: { date: 'YYYY-MM-DD' },
+      confirmPassword: { equalPassword: newPassword },
+    });
+  };
+
+  return (
+    <View>
+      <TextInput onChangeText={setName} value={name} />
+      <TextInput onChangeText={setEmail} value={email} />
+      <TextInput onChangeText={setNumber} value={number} />
+      <TextInput onChangeText={setDate} value={date} />
+      {isFieldInError('date') &&
+        getErrorsInField('date').map(errorMessage => (
+          <Text>{errorMessage}</Text>
+        ))}
+
+      <TextInput
+        onChangeText={setNewPassword}
+        value={newPassword}
+        secureTextEntry={true}
+      />
+      <TextInput
+        onChangeText={setConfirmPassword}
+        value={confirmPassword}
+        secureTextEntry={true}
+      />
+      {isFieldInError('confirmPassword') &&
+        getErrorsInField('confirmPassword').map(errorMessage => (
+          <Text>{errorMessage}</Text>
+        ))}
+
+      <TouchableHighlight onPress={_onPressButton}>
+        <Text>Submit</Text>
+      </TouchableHighlight>
+
+      <Text>{getErrorMessages()}</Text>
+    </View>
+  );
+};
+
+export default FormTest;
 ```
