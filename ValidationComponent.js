@@ -38,7 +38,6 @@ export default class ValidationComponent extends Component {
       this._resetErrors();
       // Iterate over inner state
       for (const key of Object.keys(this.state)) {
-        console.log(this.state)
         // Check if child name is equals to fields array set up in parameters
         const rules = fields[key];
         if (rules) {
