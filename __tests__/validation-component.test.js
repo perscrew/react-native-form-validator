@@ -1,54 +1,31 @@
-'use strict';
 
-import { expect } from 'chai';
-import { mount, shallow } from 'enzyme';
-/*---------------- mock DOM ----------------*/
-import { jsdom } from 'jsdom';
-import React from 'react';
+import * as React from 'react';
+import { shallow, configure } from 'enzyme';
+import renderer from 'react-test-renderer';
+import FormTest from '../examples/FormTest';
 import { TextInput } from 'react-native';
-import FormTest from './formTest';
 
-var exposedProperties = ['window', 'navigator', 'document'];
-
-global.document = jsdom('');
-global.window = document.defaultView;
-Object.keys(document.defaultView).forEach((property) => {
-  if (typeof global[property] === 'undefined') {
-    exposedProperties.push(property);
-    global[property] = document.defaultView[property];
-  }
-});
-
-global.navigator = {
-  userAgent: 'node.js'
-};
-
-global.ErrorUtils = {
-  setGlobalHandler: () => { }
-};
-
-
+import Adapter from 'enzyme-adapter-react-16';
+configure({ adapter: new Adapter() });
 
 describe('ValidationComponent:', () => {
 
-  it('initialize', () => {
-    const wrapper = mount(<FormTest />);
-    const formTest = wrapper.instance();
-
-    expect(formTest.errors).to.deep.equal([]);
+  test('initialize', () => {
+    const component = renderer.create(<FormTest />);
+    expect(component.getInstance().errors).toEqual([]);
   });
 
-  it('default fields validation should be ok', () => {
-    const wrapper = mount(<FormTest />);
-    const formTest = wrapper.instance();
+   it('default fields validation should be ok', () => {
+    const component = renderer.create(<FormTest />);
+    const formTest = component.getInstance();
 
     formTest._onPressButton();
 
-    expect(formTest.errors).to.deep.equal([]);
-    expect(formTest.isFormValid()).to.equal(true);
-    expect(formTest.getErrorsInField('name')).to.deep.equal([]);
-    expect(formTest.getErrorsInField('number')).to.deep.equal([]);
-    expect(formTest.getErrorMessages()).to.equal("");
+    expect(formTest.errors).toEqual([]);
+    expect(formTest.isFormValid()).toBe(true);
+    expect(formTest.getErrorsInField('name')).toEqual([]);
+    expect(formTest.getErrorsInField('number')).toEqual([]);
+    expect(formTest.getErrorMessages()).toBe("");
   });
 
   it('method validate should return false', () => {
@@ -58,7 +35,7 @@ describe('ValidationComponent:', () => {
     textInput.simulate('changeText', "na"); // minlength = 3
 
     const formTest = wrapper.instance();
-    expect(formTest.validate({ name: { minlength: 3 } })).to.equal(false);
+    expect(formTest.validate({ name: { minlength: 3 } })).toBe(false);
   });
 
   it('empty field with required rule should not be ok', () => {
@@ -68,7 +45,7 @@ describe('ValidationComponent:', () => {
     textInput.simulate('changeText', ""); // minlength = 3
 
     const formTest = wrapper.instance();
-    expect(formTest.validate({ name: { required: true } })).to.equal(false);
+    expect(formTest.validate({ name: { required: true } })).toBe(false);
   });
 
   it('fields validation name should not be ok', () => {
@@ -81,32 +58,30 @@ describe('ValidationComponent:', () => {
     const formTest = wrapper.instance();
     formTest._onPressButton();
 
-    expect(formTest.isFormValid()).to.equal(false);
-    expect(formTest.getErrorMessages()).to.equal('The field "name" length must be greater than 2.');
-    expect(formTest.isFieldInError('name')).to.equal(true);
+    expect(formTest.isFormValid()).toBe(false);
+    expect(formTest.getErrorMessages()).toBe('The field "name" length must be greater than 2.');
+    expect(formTest.isFieldInError('name')).toBe(true);
 
     // Seize an empty value
     textInput.simulate('changeText', ""); // minlength = 3
     formTest._onPressButton();
-    expect(formTest.isFormValid()).to.equal(false);
-    expect(formTest.getErrorMessages()).to.
-      equal('The field "name" length must be greater than 2.\nThe field "name" is mandatory.');
-    expect(formTest.getErrorsInField('name')).to.deep.equal([
+    expect(formTest.isFormValid()).toBe(false);
+    expect(formTest.getErrorMessages()).toBe('The field "name" length must be greater than 2.\nThe field "name" is mandatory.');
+    expect(formTest.getErrorsInField('name')).toEqual([
       'The field "name" length must be greater than 2.',
       'The field "name" is mandatory.'
     ])
-    expect(formTest.isFieldInError('name')).to.equal(true);
+    expect(formTest.isFieldInError('name')).toBe(true);
 
     // Seize a value greater than maxlength (7)
     textInput.simulate('changeText', "12345678"); // maxlength = 7
     formTest._onPressButton();
-    expect(formTest.isFormValid()).to.equal(false);
-    expect(formTest.getErrorMessages()).to.
-      equal('The field "name" length must be lower than 7.');
-    expect(formTest.isFieldInError('name')).to.equal(true);
+    expect(formTest.isFormValid()).toBe(false);
+    expect(formTest.getErrorMessages()).toBe('The field "name" length must be lower than 7.');
+    expect(formTest.isFieldInError('name')).toBe(true);
   });
 
-  it('fields validation email should not be ok', () => {
+   it('fields validation email should not be ok', () => {
     const wrapper = shallow(<FormTest />);
     const textInput = wrapper.find(TextInput).at(1); // email input
     textInput.simulate('changeText', "em");
@@ -114,11 +89,12 @@ describe('ValidationComponent:', () => {
     const formTest = wrapper.instance();
     formTest._onPressButton();
 
-    expect(formTest.isFormValid()).to.equal(false);
-    expect(formTest.getErrorMessages()).to.
-      equal('The field "email" must be a valid email address.');
-    expect(formTest.isFieldInError('email')).to.equal(true);
+    expect(formTest.isFormValid()).toBe(false);
+    expect(formTest.getErrorMessages()).toBe('The field "email" must be a valid email address.');
+    expect(formTest.isFieldInError('email')).toBe(true);
   });
+
+  
 
   it('fields validation date should not be ok', () => {
     const wrapper = shallow(<FormTest />);
@@ -128,14 +104,13 @@ describe('ValidationComponent:', () => {
     const formTest = wrapper.instance();
     formTest._onPressButton();
 
-    expect(formTest.isFormValid()).to.equal(false);
-    expect(formTest.getErrorMessages()).to.
-      equal('The field "date" must be a valid date (YYYY-MM-DD).');
-    expect(formTest.isFieldInError('date')).to.equal(true);
+    expect(formTest.isFormValid()).toBe(false);
+    expect(formTest.getErrorMessages()).toBe('The field "date" must be a valid date (YYYY-MM-DD).');
+    expect(formTest.isFieldInError('date')).toBe(true);
   });
 
 
-  it('fields validation number should not be ok', () => {
+   it('fields validation number should not be ok', () => {
     const wrapper = shallow(<FormTest />);
     const textInput = wrapper.find(TextInput).at(2); // number input
     textInput.simulate('changeText', "not_number");
@@ -143,13 +118,12 @@ describe('ValidationComponent:', () => {
     const formTest = wrapper.instance();
     formTest._onPressButton();
 
-    expect(formTest.isFormValid()).to.equal(false);
-    expect(formTest.getErrorMessages()).to.
-      equal('The field "number" must be a valid number.');
-    expect(formTest.isFieldInError('number')).to.equal(true);
+    expect(formTest.isFormValid()).toBe(false);
+    expect(formTest.getErrorMessages()).toBe('The field "number" must be a valid number.');
+    expect(formTest.isFieldInError('number')).toBe(true);
   });
 
-  it('fields validation number should not be very OK', () => {
+   it('fields validation number should not be very OK', () => {
     const wrapper = shallow(<FormTest />);
     const textInput = wrapper.find(TextInput).at(2); // number input
     textInput.simulate('changeText', "not_number");
@@ -157,20 +131,20 @@ describe('ValidationComponent:', () => {
     const formTest = wrapper.instance();
     formTest._onPressButton();
 
-    expect(formTest.isFormValid()).to.equal(false);
-    expect(formTest.getErrorMessages()).to.
-      equal('The field "number" must be a valid number.');
-    expect(formTest.getErrorsInField('number')).to.deep.equal(['The field "number" must be a valid number.'])
-    expect(formTest.isFieldInError('number')).to.equal(true);
+    expect(formTest.isFormValid()).toBe(false);
+    expect(formTest.getErrorMessages()).toBe('The field "number" must be a valid number.');
+    expect(formTest.getErrorsInField('number')).toEqual(['The field "number" must be a valid number.'])
+    expect(formTest.isFieldInError('number')).toBe(true);
   });
+  
 
   it('deviceLocale props should be fr', () => {
     const wrapper = shallow(<FormTest deviceLocale="fr" />);
     const formTest = wrapper.instance();
-    expect(formTest.deviceLocale).to.equal("fr");
+    expect(formTest.deviceLocale).toBe("fr");
   });
 
-  it('error messages should be in fr locale', () => {
+   it('error messages should be in fr locale', () => {
     const wrapper = shallow(<FormTest deviceLocale="fr" />);
     const textInput = wrapper.find(TextInput).at(1); // email input
     textInput.simulate('changeText', "em");
@@ -178,18 +152,17 @@ describe('ValidationComponent:', () => {
     const formTest = wrapper.instance();
     formTest._onPressButton();
 
-    expect(formTest.isFormValid()).to.equal(false);
-    expect(formTest.getErrorMessages()).to.
-      equal('Le champ "email" doit être une adresse email valide.');
-    expect(formTest.isFieldInError('email')).to.equal(true);
-    expect(formTest.deviceLocale).to.equal("fr");
+    expect(formTest.isFormValid()).toBe(false);
+    expect(formTest.getErrorMessages()).toBe('Le champ "email" doit être une adresse email valide.');
+    expect(formTest.isFieldInError('email')).toBe(true);
+    expect(formTest.deviceLocale).toBe("fr");
   });
 
   it('rules props should be updated', () => {
     const rules = { any: /^(.*)$/ };
     const wrapper = shallow(<FormTest rules={rules} />);
     const formTest = wrapper.instance();
-    expect(formTest.rules).to.equal(rules);
+    expect(formTest.rules).toEqual(rules);
   });
 
   it('messages props should be updated', () => {
@@ -199,7 +172,7 @@ describe('ValidationComponent:', () => {
     };
     const wrapper = shallow(<FormTest messages={messages} />);
     const formTest = wrapper.instance();
-    expect(formTest.messages).to.equal(messages);
+    expect(formTest.messages).toEqual(messages);
   });
 
   it("fields password doesn't have number - not ok", () => {
@@ -212,10 +185,9 @@ describe('ValidationComponent:', () => {
     const formTest = wrapper.instance();
     formTest._onPressButton();
 
-    expect(formTest.isFormValid()).to.equal(false);
-    expect(formTest.getErrorMessages()).to.
-      equal('The field "password" must contain a number.');
-    expect(formTest.isFieldInError('password')).to.equal(true);
+    expect(formTest.isFormValid()).toBe(false);
+    expect(formTest.getErrorMessages()).toBe('The field "password" must contain a number.');
+    expect(formTest.isFieldInError('password')).toBe(true);
   });
 
   it("field password doesn't have special character - not ok", () => {
@@ -228,10 +200,9 @@ describe('ValidationComponent:', () => {
     const formTest = wrapper.instance();
     formTest._onPressButton();
 
-    expect(formTest.isFormValid()).to.equal(false);
-    expect(formTest.getErrorMessages()).to.
-      equal('The field "password" must contain a special character.');
-    expect(formTest.isFieldInError('password')).to.equal(true);
+    expect(formTest.isFormValid()).toBe(false);
+    expect(formTest.getErrorMessages()).toBe('The field "password" must contain a special character.');
+    expect(formTest.isFieldInError('password')).toBe(true);
   });
 
   it("field password doesn't have lower case - not ok", () => {
@@ -244,10 +215,9 @@ describe('ValidationComponent:', () => {
     const formTest = wrapper.instance();
     formTest._onPressButton();
 
-    expect(formTest.isFormValid()).to.equal(false);
-    expect(formTest.getErrorMessages()).to.
-      equal('The field "password" must contain a lower case.');
-    expect(formTest.isFieldInError('password')).to.equal(true);
+    expect(formTest.isFormValid()).toBe(false);
+    expect(formTest.getErrorMessages()).toBe('The field "password" must contain a lower case.');
+    expect(formTest.isFieldInError('password')).toBe(true);
   });
 
   it("field password doesn't have upper case - not ok", () => {
@@ -260,13 +230,12 @@ describe('ValidationComponent:', () => {
     const formTest = wrapper.instance();
     formTest._onPressButton();
 
-    expect(formTest.isFormValid()).to.equal(false);
-    expect(formTest.getErrorMessages()).to.
-      equal('The field "password" must contain a upper case.');
-    expect(formTest.isFieldInError('password')).to.equal(true);
+    expect(formTest.isFormValid()).toBe(false);
+    expect(formTest.getErrorMessages()).toBe('The field "password" must contain a upper case.');
+    expect(formTest.isFieldInError('password')).toBe(true);
   });
 
-  it("field password is not equal to confirm password - not ok", () => {
+   it("field password is not equal to confirm password - not ok", () => {
     const wrapper = shallow(<FormTest />);
     const textInput = wrapper.find(TextInput).at(4); // number input
     textInput.simulate('changeText', "Aa1*");
@@ -276,13 +245,12 @@ describe('ValidationComponent:', () => {
     const formTest = wrapper.instance();
     formTest._onPressButton();
 
-    expect(formTest.isFormValid()).to.equal(false);
-    expect(formTest.getErrorMessages()).to.
-      equal('Passwords are different.');
-    expect(formTest.isFieldInError('confirmPassword')).to.equal(true);
+    expect(formTest.isFormValid()).toBe(false);
+    expect(formTest.getErrorMessages()).toBe('Passwords are different.');
+    expect(formTest.isFieldInError('confirmPassword')).toBe(true);
   });
 
-  it("password fields  are ok", () => {
+   it("password fields  are ok", () => {
     const wrapper = shallow(<FormTest />);
     const textInput = wrapper.find(TextInput).at(4); // number input
     textInput.simulate('changeText', "Aa1*");
@@ -292,10 +260,10 @@ describe('ValidationComponent:', () => {
     const formTest = wrapper.instance();
     formTest._onPressButton();
 
-    expect(formTest.isFormValid()).to.equal(true);
-    expect(formTest.getErrorMessages()).to.equal("");
-    expect(formTest.isFieldInError('password')).to.equal(false);
-    expect(formTest.isFieldInError('confirmPassword')).to.equal(false);
-  });
+    expect(formTest.isFormValid()).toBe(true);
+    expect(formTest.getErrorMessages()).toBe("");
+    expect(formTest.isFieldInError('password')).toBe(false);
+    expect(formTest.isFieldInError('confirmPassword')).toBe(false);
+  }); 
 
 });

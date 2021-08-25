@@ -1,14 +1,12 @@
-'use strict';
-
-import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableHighlight } from 'react-native';
+import React from 'react';
+import { Text, TextInput, TouchableHighlight, View } from 'react-native';
 import ValidationComponent from '../index';
 
 export default class FormTest extends ValidationComponent {
 
   constructor(props) {
     super(props);
-    this.state = { name: "My name", email: "tibtib@gmail.com", number: "56", date: "2017-03-01", password: "", confirmPassword: "" };
+    this.state = { name: "My name", email: "tibtib@gmail.com", number: "56", date: "2017-03-01", password: "", confirmPassword: "", error: false };
   }
 
   _onPressButton() {
