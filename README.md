@@ -1,5 +1,8 @@
 # React native form validator
 [![Node.js CI](https://github.com/perscrew/react-native-form-validator/actions/workflows/ci.yml/badge.svg)](https://github.com/perscrew/react-native-form-validator/actions/workflows/ci.yml)
+[![Npm package version](https://badgen.net/npm/v/react-native-form-validator)](https://www.npmjs.com/package/react-native-form-validator)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
+[![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)](https://www.javascript.com)
 
 React native form validator is a simple library to validate your form fields with React Native.
 The library is easy to use. You just have to extend the "ValidationComponent" class on your desired React native form component.

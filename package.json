@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "commit": "git-cz"
   },
   "repository": {
     "type": "git",
@@ -32,8 +33,11 @@
     "@babel/plugin-syntax-optional-chaining": "^7.8.3",
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
     "@types/jest": "^27.0.1",
     "babel-jest": "^27.0.6",
+    "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^1.1.6",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
@@ -47,5 +51,15 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
