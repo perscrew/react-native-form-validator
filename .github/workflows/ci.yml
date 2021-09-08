@@ -28,6 +28,12 @@ jobs:
 
       - run: npm test
 
+      - name: Conventional Changelog Action
+        if: ${{ github.ref == 'refs/heads/master' }}
+        uses: TriPSs/conventional-changelog-action@v3
+        with:
+          github-token: ${{ secrets.BUMP_VERSION_TOKEN }}
+
       - name : Publish library to npm registry
         if: ${{ github.ref == 'refs/heads/master' }}
         run: npm publish
