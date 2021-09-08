@@ -1,4 +1,4 @@
-import useValidation from "./useValidation";
+import useValidation from "./use-validation";
 import ValidationComponent from "./ValidationComponent";
 
 export { useValidation };
