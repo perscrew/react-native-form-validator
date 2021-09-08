@@ -1,6 +1,6 @@
 {
   "name": "react-native-form-validator",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "React native library to validate form fields",
   "main": "src/index.js",
   "scripts": {
