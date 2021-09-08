@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TextInput, TouchableHighlight, View } from 'react-native';
-import ValidationComponent from '../index';
+import ValidationComponent from '../src/index';
 
 export default class FormTest extends ValidationComponent {
 

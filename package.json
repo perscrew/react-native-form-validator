@@ -2,7 +2,7 @@
   "name": "react-native-form-validator",
   "version": "0.4.0",
   "description": "React native library to validate form fields",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
@@ -32,6 +32,7 @@
     "@babel/plugin-syntax-optional-chaining": "^7.8.3",
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
+    "@types/jest": "^27.0.1",
     "babel-jest": "^27.0.6",
     "cz-conventional-changelog": "^1.1.6",
     "enzyme": "^3.11.0",

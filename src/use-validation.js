@@ -1,9 +1,7 @@
-"use strict";
-
-import PropTypes from "prop-types";
-import { useState, useRef } from "react";
-import defaultMessages from "./defaultMessages";
-import defaultRules from "./defaultRules";
+import PropTypes from 'prop-types';
+import { useState, useRef } from 'react';
+import defaultMessages from './messages/defaultMessages';
+import defaultRules from './rules/defaultRules';
 
 const useValidation = (props) => {
   const { state = {} } = props;
@@ -11,7 +9,7 @@ const useValidation = (props) => {
   // ex:
   // [{ fieldName: "name", messages: ["The field name is required."] }]
   // Retrieve props
-  const deviceLocale = props.deviceLocale || "en"; // ex: en, fr
+  const deviceLocale = props.deviceLocale || 'en'; // ex: en, fr
   const baseRules = props.rules || defaultRules; // rules for Validation
   const messages = props.messages || defaultMessages;
   const labels = props.labels || {};
@@ -50,12 +48,9 @@ const useValidation = (props) => {
       return; // if value is empty AND its not required by the rules, no need to check any other rules
     }
     for (const key of Object.keys(rules)) {
-      const isRuleFn = typeof baseRules[key] == "function";
+      const isRuleFn = typeof baseRules[key] == 'function';
       const isRegExp = baseRules[key] instanceof RegExp;
-      if (
-        (isRuleFn && !baseRules[key](rules[key], value)) ||
-        (isRegExp && !baseRules[key].test(value))
-      ) {
+      if ((isRuleFn && !baseRules[key](rules[key], value)) || (isRegExp && !baseRules[key].test(value))) {
         _addError(fieldName, key, rules[key], isRuleFn);
       }
     }
@@ -66,10 +61,8 @@ const useValidation = (props) => {
   // [{ fieldName: "name", messages: ["The field name is required."] }]
   const _addError = (fieldName, rule, value, isFn) => {
     const name = labels[fieldName];
-    value = rule == "minlength" ? value - 1 : value;
-    const errMsg = messages[deviceLocale][rule]
-      .replace("{0}", name || fieldName)
-      .replace("{1}", value);
+    value = rule == 'minlength' ? value - 1 : value;
+    const errMsg = messages[deviceLocale][rule].replace('{0}', name || fieldName).replace('{1}', value);
     let [error] = errors.current.filter((err) => err.fieldName === fieldName);
     // error already exists
     if (error) {
@@ -83,7 +76,7 @@ const useValidation = (props) => {
       errors.current.push({
         fieldName,
         failedRules: [rule],
-        messages: [errMsg],
+        messages: [errMsg]
       });
       setInternalErrors(errors.current);
     }
@@ -97,9 +90,7 @@ const useValidation = (props) => {
 
   // Method to check if the field is in error
   const isFieldInError = (fieldName) => {
-    return (
-      internalErrors.filter((err) => err.fieldName === fieldName).length > 0
-    );
+    return internalErrors.filter((err) => err.fieldName === fieldName).length > 0;
   };
 
   const isFormValid = () => {
@@ -118,9 +109,7 @@ const useValidation = (props) => {
 
   // Return the rules that failed validation for the given field
   const getFailedRulesInField = (fieldName) => {
-    const foundError = internalErrors.find(
-      (err) => err.fieldName === fieldName
-    );
+    const foundError = internalErrors.find((err) => err.fieldName === fieldName);
     if (!foundError) {
       return [];
     }
@@ -128,17 +117,13 @@ const useValidation = (props) => {
   };
 
   // Concatenate each error messages
-  const getErrorMessages = (separator = "\n") => {
-    return internalErrors
-      .map((err) => err.messages.join(separator))
-      .join(separator);
+  const getErrorMessages = (separator = '\n') => {
+    return internalErrors.map((err) => err.messages.join(separator)).join(separator);
   };
 
   // Method to return errors on a specific field
   const getErrorsInField = (fieldName) => {
-    const foundError = internalErrors.find(
-      (err) => err.fieldName === fieldName
-    );
+    const foundError = internalErrors.find((err) => err.fieldName === fieldName);
     if (!foundError) {
       return [];
     }
@@ -152,7 +137,7 @@ const useValidation = (props) => {
     getFailedRules,
     getFailedRulesInField,
     getErrorMessages,
-    getErrorsInField,
+    getErrorsInField
   };
 };
 
@@ -160,14 +145,14 @@ useValidation.propTypes = {
   deviceLocale: PropTypes.string, // Used for language locale
   rules: PropTypes.object, // rules for validations
   messages: PropTypes.object, // messages for validation errors
-  labels: PropTypes.object, // labels for validation messages
+  labels: PropTypes.object // labels for validation messages
 };
 
 useValidation.defaultProps = {
-  deviceLocale: "en",
+  deviceLocale: 'en',
   rules: defaultRules,
   messages: defaultMessages,
-  labels: {},
+  labels: {}
 };
 
 export default useValidation;
