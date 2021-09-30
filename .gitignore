@@ -40,3 +40,8 @@ android/app/libs
 android/keystores/debug.keystore
 
 /coverage/
+
+
+examples/react-js/node_modules
+
+lib

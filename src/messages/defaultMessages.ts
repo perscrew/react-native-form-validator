@@ -1,6 +1,19 @@
-'use strict';
-
-const defaultMessages = {
+const defaultMessages: {
+  [iso: string]: {
+    numbers: string;
+    email: string;
+    required: string;
+    date: string;
+    minlength: string;
+    maxlength: string;
+    equalPassword: string;
+    hasUpperCase: string;
+    hasLowerCase: string;
+    hasNumber: string;
+    hasSpecialCharacter: string;
+    [key: string]: string;
+  };
+} = {
   // English language - Used by default
   en: {
     numbers: 'The field "{0}" must be a valid number.',
@@ -13,7 +26,7 @@ const defaultMessages = {
     hasUpperCase: 'The field "{0}" must contain a upper case.',
     hasLowerCase: 'The field "{0}" must contain a lower case.',
     hasNumber: 'The field "{0}" must contain a number.',
-    hasSpecialCharacter: 'The field "{0}" must contain a special character.',
+    hasSpecialCharacter: 'The field "{0}" must contain a special character.'
   },
   //Arabic language
   ar: {
@@ -27,7 +40,7 @@ const defaultMessages = {
     hasNumber: 'يجب أن يحتوي الحقل "{0}" على رقم.',
     hasUpperCase: 'يجب أن يحتوي الحقل "{0}" على حرف كبير',
     hasLowerCase: 'يجب أن يحتوي الحقل "{0}" على أحرف صغيرة',
-    hasSpecialCharacter: 'يجب أن يحتوي الحقل "{0}" على رمز خاص',
+    hasSpecialCharacter: 'يجب أن يحتوي الحقل "{0}" على رمز خاص'
   },
   // French language
   fr: {
@@ -41,7 +54,7 @@ const defaultMessages = {
     hasNumber: 'Le champ "{0}" doit contenir un chiffre.',
     hasUpperCase: 'Le champ "{0}" doit contenir une majuscule',
     hasLowerCase: 'Le champ "{0}" doit contenir une minuscule',
-    hasSpecialCharacter: 'Le champ "{0}" doit contenir un caractère spécial',
+    hasSpecialCharacter: 'Le champ "{0}" doit contenir un caractère spécial'
   },
   // Persian (Farsi) language
   fa: {
@@ -55,7 +68,7 @@ const defaultMessages = {
     hasNumber: 'قسمت "{0}" باید حاوی یک عدد باشد.',
     hasUpperCase: 'قسمت "{0}" باید شامل یک حرف بزرگ باشد',
     hasLowerCase: 'قسمت "{0}" باید دارای حروف کوچک باشد',
-    hasSpecialCharacter: 'قسمت "{0}" باید دارای یک نویسه خاص باشد',
+    hasSpecialCharacter: 'قسمت "{0}" باید دارای یک نویسه خاص باشد'
   },
   // Indonesian language
   id: {
@@ -69,7 +82,7 @@ const defaultMessages = {
     hasNumber: '"{0}" harus berisi angka.',
     hasUpperCase: '"{0}" harus mengandung huruf kapital',
     hasLowerCase: '"{0}" harus berisi huruf kecil',
-    hasSpecialCharacter: '"{0}" harus berisi karakter khusus',
+    hasSpecialCharacter: '"{0}" harus berisi karakter khusus'
   },
   // Portuguese language of Brazil
   ptBR: {
@@ -83,7 +96,7 @@ const defaultMessages = {
     hasNumber: 'O campo "{0}" deve conter um número.',
     hasUpperCase: 'O campo "{0}" deve conter uma letra maiúscula',
     hasLowerCase: 'O campo "{0}" deve conter letras minúsculas',
-    hasSpecialCharacter: 'O campo "{0}" deve conter um caractere especial',
+    hasSpecialCharacter: 'O campo "{0}" deve conter um caractere especial'
   },
   // Spanish language
   es: {
@@ -97,7 +110,7 @@ const defaultMessages = {
     hasNumber: 'El campo "{0}" debe contener un número.',
     hasUpperCase: 'El campo "{0}" debe contener una letra mayúscula',
     hasLowerCase: 'El campo "{0}" debe contener minúsculas',
-    hasSpecialCharacter: 'El campo "{0}" debe contener un carácter especial',
+    hasSpecialCharacter: 'El campo "{0}" debe contener un carácter especial'
   },
   // Turkish language - Used by default
   tr: {
@@ -111,7 +124,7 @@ const defaultMessages = {
     hasNumber: '"{0}" alanı bir sayı içermelidir.',
     hasUpperCase: '"{0}" alanı büyük harf içermelidir',
     hasLowerCase: '"{0}" alanı küçük harf içermelidir',
-    hasSpecialCharacter: '"{0}" alanı özel bir karakter içermelidir',
+    hasSpecialCharacter: '"{0}" alanı özel bir karakter içermelidir'
   },
   it: {
     numbers: 'Il campo "{0}" deve contenere solo numeri.',
@@ -124,8 +137,8 @@ const defaultMessages = {
     hasUpperCase: 'Il campo "{0}" deve contenere una maiuscola',
     hasLowerCase: 'Il campo "{0}" deve contenere una minuscola',
     hasNumber: 'Il campo "{0}" deve contenere un numero',
-    hasSpecialCharacter: 'Il campo "{0}" deve contenere un carattere speciale',
-  },
+    hasSpecialCharacter: 'Il campo "{0}" deve contenere un carattere speciale'
+  }
   // TODO Add other languages here...
 };
 

@@ -6,7 +6,7 @@ import { TextInput, Text, TouchableHighlight } from 'react-native';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 
-describe('FunctionalComponent', () => {
+xdescribe('FunctionalComponent', () => {
   test('should display 7 text inputs', () => {
     const wrapper = shallow(<FunctionalFormTest />);
     const textInputs = wrapper.find(TextInput);

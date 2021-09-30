@@ -1,5 +1,3 @@
-'use strict';
-
 import moment from 'moment';
 
 // Custom default rules to validate form fields
@@ -12,12 +10,12 @@ const defaultRules = {
   hasUpperCase: /(?=.*[A-Z])/,
   hasLowerCase: /(?=.*[a-z])/,
   hasSpecialCharacter: /(\W)/,
-  date(format = 'YYYY-MM-DD', value) {
+  date(format = 'YYYY-MM-DD', value: string) {
     const d = moment(value, format);
     if (d == null || !d.isValid()) return false;
     return true;
   },
-  minlength(length, value) {
+  minlength(length: number, value: string) {
     if (length === void 0) {
       throw 'ERROR: It is not a valid length, checkout your minlength settings.';
     } else if (value.length >= length) {
@@ -25,7 +23,7 @@ const defaultRules = {
     }
     return false;
   },
-  maxlength(length, value) {
+  maxlength(length: number, value: string) {
     if (length === void 0) {
       throw 'ERROR: It is not a valid length, checkout your maxlength settings.';
     } else if (value.length > length) {
@@ -33,7 +31,7 @@ const defaultRules = {
     }
     return true;
   },
-  equalPassword(dataToCompare, value) {
+  equalPassword(dataToCompare: string, value: string) {
     return dataToCompare === value;
   }
 };
