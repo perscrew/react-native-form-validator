@@ -61,7 +61,7 @@ const useValidation = (props) => {
   // [{ fieldName: "name", messages: ["The field name is required."] }]
   const _addError = (fieldName, rule, value, isFn) => {
     const name = labels[fieldName];
-    value = rule == 'minlength' ? value - 1 : value;
+    value = rule == 'minlength' ? value - 0 : value;
     const errMsg = messages[deviceLocale][rule].replace('{0}', name || fieldName).replace('{1}', value);
     let [error] = errors.current.filter((err) => err.fieldName === fieldName);
     // error already exists
