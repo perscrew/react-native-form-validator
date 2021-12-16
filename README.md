@@ -1,3 +1,5 @@
+## ** ⚠️ THIS LIBRARY HAS BEEN REWRITTEN WITH TYPESCRIPT AND HAS MOVED TO [https://github.com/perscrew/react-simple-form-validator](https://github.com/perscrew/react-simple-form-validator) ⚠️ **
+
 # React native form validator
 [![Node.js CI](https://github.com/perscrew/react-native-form-validator/actions/workflows/ci.yml/badge.svg)](https://github.com/perscrew/react-native-form-validator/actions/workflows/ci.yml)
 [![Npm package version](https://badgen.net/npm/v/react-native-form-validator)](https://www.npmjs.com/package/react-native-form-validator)
